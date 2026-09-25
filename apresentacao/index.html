@@ -34,7 +34,6 @@ body{
   margin:0;background:var(--ink);color:var(--text);
   font-family:var(--body);font-size:16px;line-height:1.5;
   overflow:hidden;
-  background-image:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(63,211,166,.08),transparent 70%),radial-gradient(ellipse 60% 50% at 10% 90%,rgba(138,168,255,.07),transparent 70%);
 }
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
 .labels{position:fixed;inset:0;pointer-events:none;z-index:2}
@@ -112,18 +111,18 @@ h3{font-size:1rem;font-weight:500;letter-spacing:0;line-height:1.25}
 kbd{font:600 .7rem/1 var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:.25rem .45rem;color:var(--text)}
 
 /* slide 2 */
-.sources{display:grid;gap:8px;margin-top:1.6rem}
+.sources{display:grid;gap:6px;margin-top:1.3rem}
 .src{
   appearance:none;text-align:left;cursor:pointer;width:100%;color:var(--text);font:inherit;
   display:grid;grid-template-columns:10px minmax(0,1fr);gap:.2rem 1rem;align-items:baseline;
-  background:rgba(14,34,43,.62);border:1px solid var(--line);border-radius:6px;padding:.8rem 1rem;
+  background:rgba(14,34,43,.62);border:1px solid var(--line);border-radius:6px;padding:.62rem 1rem;
   transition:border-color .25s,background .25s,transform .25s;
 }
 .src:hover,.src.sel{border-color:var(--c);background:rgba(19,45,56,.85)}
 .src .sw{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c);align-self:center;grid-row:span 2}
 .src b{font-weight:600}
-.src small{color:var(--muted);font-size:.9rem}
-.verdict{margin-top:1.6rem;padding-left:1rem;border-left:2px solid var(--lava);font-size:1.02rem;max-width:36em}
+.src small{color:var(--muted);font-size:.86rem;line-height:1.4}
+.verdict{margin-top:1.2rem;padding-left:1rem;border-left:2px solid var(--lava);font-size:1.02rem;max-width:36em}
 
 /* slide 3 */
 .principles{display:grid;gap:1.3rem;margin-top:1.8rem}
@@ -174,18 +173,18 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
 .detail p{margin:0;font-size:.98rem}
 
 /* slide 5 */
-.docgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:start;margin-top:1.6rem}
+.docgrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:start;margin-top:1.3rem}
 .doc{background:rgba(9,26,33,.9);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
 .doc .body{display:grid;grid-template-columns:minmax(0,1fr) auto;overflow-x:auto}
 .doc .ln{display:contents}
-.doc .ln code{font:400 clamp(.66rem,.95vw,.8rem)/1.75 var(--mono);white-space:pre;padding-inline:1.1rem .5rem;color:#c6d6da;transition:opacity .25s}
+.doc .ln code{font:400 clamp(.66rem,.95vw,.8rem)/1.5 var(--mono);white-space:pre;padding-inline:1.1rem .5rem;color:#c6d6da;transition:opacity .25s}
 .doc .ln .who{padding-inline:.5rem 1rem;display:flex;align-items:center;transition:opacity .25s}
 .doc .ln:first-child code,.doc .ln:first-child .who{padding-top:.9rem}
 .doc .ln:last-child code,.doc .ln:last-child .who{padding-bottom:1rem}
 .doc.typing .ln:not(.on) code,.doc.typing .ln:not(.on) .who{opacity:0}
 .badge{font:600 .56rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:.25rem .4rem;border-radius:3px;border:1px solid var(--c);color:var(--c);white-space:nowrap}
 .illus{font:500 .7rem/1.3 var(--mono);color:var(--areia);margin-left:auto}
-.readers{display:grid;gap:1.2rem}
+.readers{display:grid;gap:1rem}
 .readers h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.6rem}
 .chips span{padding:.45rem .7rem;border-radius:999px;border:1px solid var(--line);font-size:.9rem;background:rgba(14,34,43,.6)}
@@ -234,6 +233,79 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
 .notes-panel h4{margin:0 0 .5rem;font:600 .68rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lagoa)}
 .notes-panel p{margin:0 0 .5rem}
 
+/* ---------- atmosphere ---------- */
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 72% 42%,rgba(63,211,166,.07),transparent 70%),radial-gradient(ellipse 60% 50% at 8% 95%,rgba(138,168,255,.07),transparent 70%),radial-gradient(ellipse 120% 90% at 50% 50%,transparent 55%,rgba(3,12,16,.65))}
+.grain{position:fixed;inset:-50%;z-index:4;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.w{display:inline-block;transition:opacity .6s ease,transform .8s cubic-bezier(.2,.8,.2,1),filter .6s;transition-delay:calc(var(--d,0) * 45ms + .15s)}
+.slide:not(.active) .w{opacity:0;transform:translateY(.5em) rotateX(40deg);filter:blur(6px)}
+.drag-hint{font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+body.dragging,body.dragging *{cursor:grabbing!important}
+
+/* buttons that do something */
+.act{appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:.6rem;
+  font:600 .78rem/1 var(--mono);letter-spacing:.06em;color:var(--ink);background:var(--lagoa);
+  border:0;border-radius:22px;padding:.8rem 1.1rem;box-shadow:0 0 0 0 rgba(63,211,166,.5);transition:transform .2s,box-shadow .3s,background .3s}
+.act:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(63,211,166,.45)}
+.act:focus-visible{outline:2px solid var(--areia);outline-offset:3px}
+.act[disabled]{background:var(--basalt-2);color:var(--muted);cursor:default;box-shadow:none;transform:none}
+.act.ghost{background:transparent;color:var(--lagoa);border:1px solid var(--lagoa)}
+.act .play{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.2rem;margin-top:1.1rem}
+
+/* slide 2 bridges */
+.verdict b{color:var(--lagoa);font-weight:600}
+.verdict.solved{border-left-color:var(--lagoa)}
+
+/* slide 4 run */
+.detail.log{grid-template-columns:minmax(0,1fr)}
+.log-lines{font:400 .8rem/1.7 var(--mono);color:#c6d6da;display:grid}
+.log-lines div{animation:logIn .35s ease both}
+.log-lines .ok{color:var(--lagoa)}
+.log-lines .t{color:var(--muted)}
+@keyframes logIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.repo pre .new{color:var(--lagoa);animation:fileIn .8s ease both}
+@keyframes fileIn{0%{background:rgba(63,211,166,.35)}100%{background:transparent}}
+.repo .mr{display:none;margin:0 1rem .9rem;padding:.55rem .7rem;border-radius:4px;border:1px dashed var(--lagoa);font:600 .72rem/1.4 var(--mono);color:var(--lagoa)}
+.repo.done .mr{display:block;animation:logIn .5s ease both}
+.sim{font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--areia)}
+.orb-slot.busy b{color:var(--lagoa)}
+
+/* slide 5 Q&A */
+.qa{display:grid;gap:.5rem;margin-top:.6rem}
+.qbtn{appearance:none;cursor:pointer;text-align:left;font:inherit;font-size:.92rem;color:var(--text);
+  background:rgba(14,34,43,.62);border:1px solid var(--line);border-radius:6px;padding:.6rem .8rem;display:flex;gap:.6rem;align-items:baseline;transition:border-color .2s,background .2s}
+.qbtn::before{content:"?";font:700 .72rem/1 var(--display);color:var(--lagoa)}
+.qbtn:hover,.qbtn.sel{border-color:var(--lagoa);background:rgba(19,45,56,.85)}
+.qbtn:focus-visible{outline:2px solid var(--areia);outline-offset:2px}
+.answer{margin-top:.2rem;padding:.8rem .9rem;border-radius:6px;background:rgba(63,211,166,.08);border:1px solid rgba(63,211,166,.35);font-size:.93rem;min-height:5.2em}
+.answer .cite{font:600 .62rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:.2rem .35rem;border-radius:3px;border:1px solid var(--c);color:var(--c);margin-left:.2rem;white-space:nowrap}
+.answer .caret{display:inline-block;width:.5em;height:1em;background:var(--lagoa);vertical-align:-.15em;animation:blink 1s steps(2) infinite;margin-left:1px}
+@keyframes blink{50%{opacity:0}}
+.doc .ln code,.doc .ln .who{transition:opacity .25s,background .3s}
+.doc.q .ln code,.doc.q .ln .who{opacity:.28}
+.doc.q .ln.hit code,.doc.q .ln.hit .who{opacity:1;background:rgba(63,211,166,.12)}
+
+/* slide 6 hover */
+.phase{cursor:default;transition:opacity .3s}
+.timeline.focus .phase:not(.hl){opacity:.4}
+
+/* slide 7 checklist */
+.asks li{cursor:pointer;border-radius:8px;padding:.35rem .4rem;margin-inline:-.4rem;transition:background .2s}
+.asks li:hover{background:rgba(19,45,56,.6)}
+.asks li:focus-visible{outline:2px solid var(--areia);outline-offset:2px}
+.asks li::before{content:counter(ask);background:transparent;color:var(--lagoa);border:1px solid var(--lagoa);transition:background .3s,color .3s,box-shadow .3s}
+.asks li[aria-checked="true"]::before{content:"✓";background:var(--lagoa);color:var(--ink);box-shadow:0 0 18px rgba(63,211,166,.6)}
+.asks li[aria-checked="true"] b{color:var(--lagoa)}
+.progress{display:flex;align-items:center;gap:.8rem;margin-top:1.2rem;font:600 .72rem/1 var(--mono);color:var(--muted);letter-spacing:.08em}
+.progress .barx{flex:1;max-width:240px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.progress .barx i{display:block;height:100%;width:0;background:var(--lagoa);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.closing{transition:opacity .6s}
+.closing.lit em{text-shadow:0 0 24px rgba(63,211,166,.6)}
+
 @media (max-width:980px){
   .poc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .orb-slot{display:none}
@@ -262,6 +334,8 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
 </head>
 <body>
 <canvas id="gl" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 <div class="labels" id="labels" aria-hidden="true"></div>
 
 <header class="bar top">
@@ -282,7 +356,7 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
       <span><b>Formato</b>Markdown → PDF</span>
       <span><b>Prova de conceito</b>SAP IS-U · 8 semanas</span>
     </div>
-    <p class="hint"><kbd>←</kbd><kbd>→</kbd> para navegar <span class="muted">·</span> <kbd>N</kbd> notas</p>
+    <p class="hint"><kbd>←</kbd><kbd>→</kbd> para navegar <span class="muted">·</span> <kbd>N</kbd> notas <span class="muted">·</span> arraste a nuvem ou clique nela</p>
   </div><div></div></div></div>
   <aside class="notes"><p>Mensagem de abertura: hoje o conhecimento sobre as nossas aplicações está sobretudo nas pessoas. A proposta é tratá-lo como tratamos o código: versionado, revisto e sempre atualizado.</p><p>A nuvem de partículas representa o conhecimento fragmentado. No último slide aparece consolidado.</p></aside>
 </section>
@@ -291,7 +365,7 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
 <section class="slide" data-title="Hoje" aria-label="Onde está hoje o conhecimento">
   <div class="wrap"><div class="split"><div class="stagger">
     <p class="eyebrow">O ponto de partida</p>
-    <h2>Onde está hoje o que sabemos sobre as nossas aplicações?</h2>
+    <h2>Onde está hoje o que sabemos sobre as aplicações?</h2>
     <div class="sources" id="sources">
       <button class="src" data-i="0" style="--c:var(--areia)"><span class="sw"></span><b>Na cabeça das pessoas</b><small>A fonte mais completa, e a que sai com cada reforma ou mudança de funções.</small></button>
       <button class="src" data-i="1" style="--c:var(--hortensia)"><span class="sw"></span><b>RCD, gestão documental</b><small>Alguma documentação, sem estrutura comum nem ligação às aplicações.</small></button>
@@ -299,9 +373,10 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
       <button class="src" data-i="3" style="--c:var(--lava)"><span class="sw"></span><b>EasyVista</b><small>Incidentes e evolutivas: o porquê de cada alteração, espalhado por milhares de tickets.</small></button>
       <button class="src" data-i="4" style="--c:#cfe3e8"><span class="sw"></span><b>Word, PDF, Excel, imagens</b><small>Formatos difíceis de pesquisar, comparar e manter, para pessoas e para IA.</small></button>
     </div>
-    <p class="verdict">Cinco ilhas sem pontes. Cada pergunta sobre uma aplicação depende de encontrar a pessoa certa.</p>
+    <p class="verdict" id="verdict">Cinco ilhas sem pontes. Cada pergunta sobre uma aplicação depende de encontrar a pessoa certa.</p>
+    <div class="row"><button class="act" id="bridgebtn" aria-pressed="false"><span class="play"></span>Construir as pontes</button><span class="drag-hint">ou arraste para rodar</span></div>
   </div><div></div></div></div>
-  <aside class="notes"><p>Passar o rato sobre cada fonte destaca a respetiva ilha. A metáfora do arquipélago é deliberada: temos informação, mas não está ligada.</p><p>Consequências: dependência de pessoas-chave, integração lenta de novos colaboradores, análise de impacto das evolutivas feita de memória.</p></aside>
+  <aside class="notes"><p>Clicar em "Construir as pontes": as ilhas passam a ligar-se a um repositório comum no GitLab. É a proposta em 3 segundos.</p><p>Passar o rato sobre cada fonte destaca a respetiva ilha. A metáfora do arquipélago é deliberada: temos informação, mas não está ligada.</p><p>Consequências: dependência de pessoas-chave, integração lenta de novos colaboradores, análise de impacto das evolutivas feita de memória.</p></aside>
 </section>
 
 <!-- 3 -->
@@ -386,10 +461,12 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
   <span class="c">… um ficheiro por objeto Z</span>
 <span class="k">historico/</span>
   ots.md  evolutivas.md
-<span class="s">AGENTS.md</span>  <span class="c">regras para a IA</span></pre>
+<span class="s">AGENTS.md</span>  <span class="c">regras para a IA</span><span id="newfiles"></span></pre>
+        <div class="mr" id="mr">Merge request aberto · a aguardar revisão da equipa SAP</div>
       </div>
     </div>
     <div class="detail" id="pocdetail"><span class="tag">A chave</span><p>O valor está no cruzamento. O número da evolutiva na descrição da ordem de transporte liga cada linha de código ao pedido de negócio que a originou.</p></div>
+    <div class="row"><button class="act" id="runbtn"><span class="play"></span>Executar o agente</button><span class="sim">simulação</span></div>
   </div>
   <aside class="notes"><p>Clicar em cada fonte mostra o que contribui. O abapGit exporta o código para Git sem alterar o sistema. As OTs vêm das tabelas E070 e E071.</p><p>A ferramenta de IA fica em aberto: a PoC compara Codex e Claude Code no mesmo material.</p></aside>
 </section>
@@ -413,15 +490,19 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
             <div><span class="badge" style="--c:var(--lagoa)">SharePoint</span>documentação de projeto</div>
           </div>
         </div>
-        <div><h3>Quem usa</h3>
-          <div class="chips"><span>Equipa SAP</span><span>Key users</span><span>Novos colaboradores</span><span>Fornecedores</span><span>Assistente IA</span></div>
-          <p>Antes de uma evolutiva, a IA responde a "o que é afetado se mudarmos isto?" com base neste repositório.</p>
+        <div><h3>Pergunte ao repositório</h3>
+          <div class="qa" id="qa">
+            <button class="qbtn" data-q="0">O que é afetado se mudarmos a regra dos contadores inteligentes?</button>
+            <button class="qbtn" data-q="1">Porque é que existe a correção de sazonalidade?</button>
+            <button class="qbtn" data-q="2">Quem devo consultar sobre este objeto?</button>
+            <div class="answer" id="answer" aria-live="polite"><span class="muted">Escolha uma pergunta. O assistente responde apenas com base no repositório e indica as fontes.</span></div>
+          </div>
         </div>
         <div><h3>Revisão humana</h3><p>Tudo o que a IA gera entra por merge request e só é publicado depois de validado por quem conhece o processo.</p></div>
       </div>
     </div>
   </div>
-  <aside class="notes"><p>Exemplo ilustrativo: o objeto e os números de OT e evolutiva são fictícios. As tabelas EABL e EABLG são as tabelas standard de leituras do IS-U.</p><p>Os badges mostram a rastreabilidade: cada secção sabe de onde veio.</p></aside>
+  <aside class="notes"><p>Clicar numa pergunta: a resposta cita as fontes e as linhas usadas ficam destacadas no documento. É assim que a IA ajuda na análise de impacto.</p><p>Exemplo ilustrativo: o objeto e os números de OT e evolutiva são fictícios. As tabelas EABL e EABLG são as tabelas standard de leituras do IS-U.</p><p>Os badges mostram a rastreabilidade: cada secção sabe de onde veio.</p></aside>
 </section>
 
 <!-- 6 -->
@@ -462,16 +543,17 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
   <div class="wrap"><div class="split"><div class="stagger">
     <p class="eyebrow">Decisão</p>
     <h2>O que precisamos para arrancar</h2>
-    <ol class="asks">
+    <ol class="asks" id="asks">
       <li><b>Aprovação da prova de conceito</b><span>Oito semanas, um processo do SAP IS-U.</span></li>
       <li><b>Acessos de leitura</b><span>SAP IS-U de desenvolvimento, ordens de transporte, EasyVista e SharePoint dos projetos IS-U.</span></li>
       <li><b>Ferramentas de IA em regime empresarial</b><span>Codex e Claude Code para duas a três pessoas.</span></li>
       <li><b>Tempo dos key users</b><span>Duas a três pessoas, cerca de 2 horas por semana nas semanas 7 e 8.</span></li>
       <li><b>Parecer de segurança e RGPD</b><span>Antes da extração de dados.</span></li>
     </ol>
-    <p class="closing">Se resultar no IS-U, o mesmo modelo aplica-se às <em>restantes aplicações da EDA</em>.</p>
+    <div class="progress"><span class="barx"><i id="askbar"></i></span><span id="askcount">0 de 5</span></div>
+    <p class="closing" id="closing">Se resultar no IS-U, o mesmo modelo aplica-se às <em>restantes aplicações da EDA</em>.</p>
   </div><div></div></div></div>
-  <aside class="notes"><p>Fecho: o investimento é pequeno e o risco controlado. O que aprendermos no IS-U serve de modelo para as outras aplicações.</p><p>A esfera representa o conhecimento consolidado, a mesma nuvem do início, agora organizada.</p></aside>
+  <aside class="notes"><p>Clicar em cada pedido para o marcar: a esfera acende por faixas. Com os cinco, o conhecimento fica consolidado.</p><p>Fecho: o investimento é pequeno e o risco controlado. O que aprendermos no IS-U serve de modelo para as outras aplicações.</p><p>A esfera representa o conhecimento consolidado, a mesma nuvem do início, agora organizada.</p></aside>
 </section>
 
 </main>
@@ -487,6 +569,12 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
 <div class="notes-panel" id="notespanel" hidden><h4 id="notestitle">Notas</h4><div id="notesbody"></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 <script>
 (function(){
 "use strict";
@@ -494,10 +582,105 @@ var slides=[].slice.call(document.querySelectorAll('.slide'));
 var S=slides.length, cur=-1;
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 var $=function(id){return document.getElementById(id)};
+var each=function(sel,fn){[].forEach.call(document.querySelectorAll(sel),fn)};
 var dotsEl=$('dots'), countEl=$('count');
-var hl2=-1, hl4=-1;
+/* shared state read by the 3D scene */
+var st={hl2:-1,hl4:-1,hl6:-1,bridges:false,flow:1,asks:[0,0,0,0,0],burst:0};
 
-/* ---------- example document (slide 5) ---------- */
+/* ---------- headings: word-by-word reveal ---------- */
+if(!reduce)each('.slide h1, .slide h2',function(h){
+  var n=0,out=document.createDocumentFragment();
+  [].slice.call(h.childNodes).forEach(function(node){
+    if(node.nodeType===3){
+      node.textContent.split(/(\s+)/).forEach(function(part){
+        if(!part)return;
+        if(/^\s+$/.test(part)){out.appendChild(document.createTextNode(' '));return}
+        var s=document.createElement('span');s.className='w';s.style.setProperty('--d',n++);s.textContent=part;out.appendChild(s);
+      });
+    }else{
+      var s=document.createElement('span');s.className='w';s.style.setProperty('--d',n++);s.appendChild(node.cloneNode(true));out.appendChild(s);
+    }
+  });
+  h.textContent='';h.appendChild(out);
+});
+
+/* ---------- slide 2: sources + bridges ---------- */
+each('#sources .src',function(b){
+  var i=+b.dataset.i;
+  var set=function(v){st.hl2=v;each('#sources .src',function(x,k){x.classList.toggle('sel',k===v)})};
+  b.addEventListener('mouseenter',function(){set(i)});
+  b.addEventListener('focus',function(){set(i)});
+  b.addEventListener('click',function(){set(st.hl2===i?-1:i)});
+  b.addEventListener('mouseleave',function(){set(-1)});
+});
+var verdictTxt=$('verdict').innerHTML;
+$('bridgebtn').addEventListener('click',function(){
+  st.bridges=!st.bridges;
+  this.setAttribute('aria-pressed',st.bridges);
+  this.classList.toggle('ghost',st.bridges);
+  this.lastChild.textContent=st.bridges?'Voltar a hoje':'Construir as pontes';
+  var v=$('verdict');v.classList.toggle('solved',st.bridges);
+  v.innerHTML=st.bridges?'Com um <b>repositório comum no GitLab</b>, cada fonte alimenta o mesmo conhecimento, e a resposta deixa de depender de uma pessoa.':verdictTxt;
+});
+
+/* ---------- slide 4: sources, details, agent run ---------- */
+var POC=[
+ ['O quê','var(--hortensia)','O abapGit exporta programas, classes, enhancements e user exits Z* para Git, sem alterar o sistema. A IA lê o código e descreve o que cada objeto faz e de que depende.'],
+ ['Quando e quem','var(--areia)','Das tabelas de ordens de transporte (E070, E071) sai que objetos mudaram, em que data, por quem e em que OT. É a linha do tempo de cada objeto.'],
+ ['Porquê','var(--lava)','Os pedidos de evolutiva do EasyVista explicam a razão de negócio de cada alteração. Os incidentes mostram onde o sistema costuma falhar.'],
+ ['Contexto','var(--lagoa)','Especificações funcionais, desenhos e atas dos projetos no SharePoint dão o enquadramento do processo. São convertidos para Markdown e citados como fonte.']
+];
+var pocDefault=$('pocdetail').innerHTML, running=false, runTimers=[];
+function pocSelect(i){
+  if(running)return;
+  st.hl4=i;
+  each('#pocsrc .src',function(b,k){b.classList.toggle('sel',k===i)});
+  var d=$('pocdetail');d.classList.remove('log');
+  if(i<0){d.innerHTML=pocDefault;d.style.removeProperty('--c');return}
+  d.style.setProperty('--c',POC[i][1]);
+  d.innerHTML='<span class="tag">'+POC[i][0]+'</span><p>'+POC[i][2]+'</p>';
+}
+each('#pocsrc .src',function(b){
+  var i=+b.dataset.i;
+  b.addEventListener('click',function(){pocSelect(st.hl4===i?-1:i)});
+  b.addEventListener('mouseenter',function(){pocSelect(i)});
+});
+var RUN=[
+ [0,'abapGit','exportar objetos Z do processo para o GitLab','var(--hortensia)'],
+ [1,'OTs','ler E070/E071 e ligar cada objeto às suas ordens de transporte','var(--areia)'],
+ [2,'EasyVista','associar os números de evolutiva citados nas OTs','var(--lava)'],
+ [3,'SharePoint','converter especificações funcionais para Markdown','var(--lagoa)'],
+ [-1,'agente','cruzar as quatro fontes e escrever a documentação','var(--text)']
+];
+var NEWF=['objetos/ZISU_CL_TARIFA_SOCIAL.md','objetos/ZISU_FM_VALIDA_LEITURA.md','processos/estimativa.md','historico/ots.md  <span class="c">(atualizado)</span>'];
+function stopRun(){runTimers.forEach(clearTimeout);runTimers=[];running=false;st.flow=1;$('orb').classList.remove('busy')}
+function resetRun(){stopRun();$('newfiles').innerHTML='';$('repo').classList.remove('done');var b=$('runbtn');b.disabled=false;b.lastChild.textContent='Executar o agente';pocSelect(-1)}
+$('runbtn').addEventListener('click',function(){
+  resetRun();running=true;this.disabled=true;this.lastChild.textContent='A executar…';
+  var d=$('pocdetail');d.classList.add('log');d.style.removeProperty('--c');
+  d.innerHTML='<div class="log-lines" id="loglines"></div>';
+  var ll=$('loglines'),step=reduce?250:1150,tm=0;
+  var add=function(html,cls){var e=document.createElement('div');if(cls)e.className=cls;e.innerHTML=html;ll.appendChild(e)};
+  RUN.forEach(function(r,k){
+    runTimers.push(setTimeout(function(){
+      st.hl4=r[0];st.flow=r[0]<0?3.2:2;
+      each('#pocsrc .src',function(b,j){b.classList.toggle('sel',j===r[0])});
+      if(r[0]<0)$('orb').classList.add('busy');
+      add('<span class="t">'+String(k+1).padStart(2,'0')+'</span> <span style="color:'+r[3]+'">'+r[1]+'</span> · '+r[2]);
+    },tm));tm+=step;
+  });
+  NEWF.forEach(function(f){
+    runTimers.push(setTimeout(function(){st.hl4=-1;$('newfiles').insertAdjacentHTML('beforeend','\n  <span class="new">+ '+f+'</span>')},tm));tm+=reduce?100:420;
+  });
+  runTimers.push(setTimeout(function(){
+    $('repo').classList.add('done');each('#pocsrc .src',function(b){b.classList.remove('sel')});
+    add('<span class="ok">✓ documentação gerada · merge request aberto para revisão humana</span>');
+    running=false;st.flow=1;$('orb').classList.remove('busy');
+    var b=$('runbtn');b.disabled=false;b.lastChild.textContent='Repetir';
+  },tm+200));
+});
+
+/* ---------- slide 5: example document + Q&A ---------- */
 var DOC=[
  ['<span class="c">---</span>',''],
  ['<span class="k">objeto:</span> <span class="s">ZISU_R_ESTIMATIVA_LEITURAS</span>','codigo'],
@@ -546,35 +729,49 @@ function typeDoc(){
     lines[i++].classList.add('on');
   },70);
 }
-
-/* ---------- slide 4 details ---------- */
-var POC=[
- ['O quê','var(--hortensia)','O abapGit exporta programas, classes, enhancements e user exits Z* para Git, sem alterar o sistema. A IA lê o código e descreve o que cada objeto faz e de que depende.'],
- ['Quando e quem','var(--areia)','Das tabelas de ordens de transporte (E070, E071) sai que objetos mudaram, em que data, por quem e em que OT. É a linha do tempo de cada objeto.'],
- ['Porquê','var(--lava)','Os pedidos de evolutiva do EasyVista explicam a razão de negócio de cada alteração. Os incidentes mostram onde o sistema costuma falhar.'],
- ['Contexto','var(--lagoa)','Especificações funcionais, desenhos e atas dos projetos no SharePoint dão o enquadramento do processo. São convertidos para Markdown e citados como fonte.']
+function cite(k){var b=BADGE[k];return '<span class="cite" style="--c:'+b[1]+'">'+b[0]+'</span>'}
+var QA=[
+ {hit:[15,19,22,23,24],parts:['Muda o passo 3 do report ZISU_R_ESTIMATIVA_LEITURAS',cite('codigo'),', que corre no job noturno ZISU_EST_NOITE antes da faturação em massa (EA00)',cite('sp'),'. A regra foi criada pela evolutiva EV-2024-0187, transportada na OT DEVK912345',cite('ev'),cite('ot'),'. Convém testar o ciclo de faturação completo.']},
+ {hit:[14,17,18,20],parts:['O perfil sazonal foi corrigido pela evolutiva EV-2022-0932',cite('ev'),', transportada na OT DEVK907771 em novembro de 2022',cite('ot'),'. O pedido original no EasyVista explica o motivo de negócio.']},
+ {hit:[3,4],parts:['Ainda não há dono funcional: o campo revisto_por está pendente. O processo pertence à gestão de leituras',cite('sp'),'. Este é o tipo de lacuna que a prova de conceito torna visível.']}
 ];
-var pocDefault=$('pocdetail').innerHTML;
-function pocSelect(i){
-  hl4=i;
-  [].forEach.call(document.querySelectorAll('#pocsrc .src'),function(b,k){b.classList.toggle('sel',k===i)});
-  var d=$('pocdetail');
-  if(i<0){d.innerHTML=pocDefault;d.style.removeProperty('--c');return}
-  d.style.setProperty('--c',POC[i][1]);
-  d.innerHTML='<span class="tag">'+POC[i][0]+'</span><p>'+POC[i][2]+'</p>';
+var qaTimer=null;
+function ask(q){
+  clearTimeout(qaTimer);
+  each('#qa .qbtn',function(b,k){b.classList.toggle('sel',k===q)});
+  clearInterval(typeTimer);docEl.classList.remove('typing');
+  docEl.classList.add('q');
+  [].forEach.call(docbody.children,function(l,k){l.classList.toggle('hit',QA[q].hit.indexOf(k)>=0)});
+  var a=$('answer'),parts=QA[q].parts,html='',pi=0,ci=0;
+  if(reduce){a.innerHTML=parts.join('');return}
+  (function tick(){
+    if(pi>=parts.length){a.innerHTML=html;return}
+    var p=parts[pi];
+    if(p.charAt(0)==='<'){html+=p;pi++;ci=0}
+    else{html+=p.slice(ci,ci+3);ci+=3;if(ci>=p.length){pi++;ci=0}}
+    a.innerHTML=html+'<span class="caret"></span>';
+    qaTimer=setTimeout(tick,16);
+  })();
 }
-[].forEach.call(document.querySelectorAll('#pocsrc .src'),function(b){
-  var i=+b.dataset.i;
-  b.addEventListener('click',function(){pocSelect(hl4===i?-1:i)});
-  b.addEventListener('mouseenter',function(){pocSelect(i)});
+each('#qa .qbtn',function(b){b.addEventListener('click',function(){ask(+b.dataset.q)})});
+function resetQA(){clearTimeout(qaTimer);docEl.classList.remove('q');each('#qa .qbtn',function(b){b.classList.remove('sel')});
+  $('answer').innerHTML='<span class="muted">Escolha uma pergunta. O assistente responde apenas com base no repositório e indica as fontes.</span>'}
+
+/* ---------- slide 6: phases highlight the helix ---------- */
+each('#timeline .phase',function(p,k){
+  p.addEventListener('mouseenter',function(){st.hl6=k;$('timeline').classList.add('focus');p.classList.add('hl')});
+  p.addEventListener('mouseleave',function(){st.hl6=-1;$('timeline').classList.remove('focus');p.classList.remove('hl')});
 });
-[].forEach.call(document.querySelectorAll('#sources .src'),function(b){
-  var i=+b.dataset.i;
-  var set=function(v){hl2=v;[].forEach.call(document.querySelectorAll('#sources .src'),function(x,k){x.classList.toggle('sel',k===v)})};
-  b.addEventListener('mouseenter',function(){set(i)});
-  b.addEventListener('focus',function(){set(i)});
-  b.addEventListener('click',function(){set(hl2===i?-1:i)});
-  b.addEventListener('mouseleave',function(){set(-1)});
+
+/* ---------- slide 7: checklist lights the sphere ---------- */
+each('#asks li',function(li,k){
+  li.tabIndex=0;li.setAttribute('role','checkbox');li.setAttribute('aria-checked','false');
+  var tog=function(){st.asks[k]=st.asks[k]?0:1;li.setAttribute('aria-checked',!!st.asks[k]);
+    var n=st.asks.reduce(function(a,b){return a+b},0);
+    $('askbar').style.width=(n*20)+'%';$('askcount').textContent=n===5?'pronto para arrancar':n+' de 5';
+    $('closing').classList.toggle('lit',n===5);if(n===5)st.burst=1;};
+  li.addEventListener('click',tog);
+  li.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();e.stopPropagation();tog()}});
 });
 
 /* ---------- flip card ---------- */
@@ -602,8 +799,8 @@ function go(i){
   $('prev').disabled=i===0;$('next').disabled=i===S-1;
   try{history.replaceState(null,'','#s'+(i+1))}catch(e){}
   updateNotes();
-  if(i===4)typeDoc();
-  if(i!==3)pocSelect(-1);
+  if(i===4){resetQA();typeDoc()}
+  if(i!==3)resetRun();
   if(gl)gl.enter(i);
 }
 $('prev').addEventListener('click',function(){go(cur-1)});
@@ -639,10 +836,21 @@ try{ if(window.THREE) gl=initGL(); }catch(err){ gl=null; }
 
 function initGL(){
   var canvas=$('gl');
-  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  var scene=new THREE.Scene();
+  var INK=0x071820;
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  renderer.setPixelRatio(dpr);renderer.setClearColor(INK,1);
+  var scene=new THREE.Scene();scene.background=new THREE.Color(INK);
   var camera=new THREE.PerspectiveCamera(50,1,.1,500);camera.position.set(0,0,60);
+  var composer=null,bloom=null;
+  if(THREE.CopyShader&&THREE.LuminosityHighPassShader&&THREE.EffectComposer&&THREE.RenderPass&&THREE.UnrealBloomPass){
+    try{
+      composer=new THREE.EffectComposer(renderer);composer.setPixelRatio(Math.min(dpr,1.5));
+      composer.addPass(new THREE.RenderPass(scene,camera));
+      bloom=new THREE.UnrealBloomPass(new THREE.Vector2(256,256),.85,.5,.28);
+      composer.addPass(bloom);
+    }catch(e){composer=null}
+  }
   var N=2600;
   var P=new Float32Array(N*3),C=new Float32Array(N*3),T=new Float32Array(N*3),TC=new Float32Array(N*3);
   var r1=new Float32Array(N),r2=new Float32Array(N),r3=new Float32Array(N),r4=new Float32Array(N);
@@ -657,6 +865,12 @@ function initGL(){
   sx.fillStyle=g;sx.fillRect(0,0,64,64);
   var mat=new THREE.PointsMaterial({size:.42,map:new THREE.CanvasTexture(sc),vertexColors:true,transparent:true,opacity:.95,depthWrite:false,blending:THREE.AdditiveBlending,sizeAttenuation:true});
   var pts=new THREE.Points(geo,mat);scene.add(pts);
+  /* faint far starfield for depth */
+  var SN=700,sp=new Float32Array(SN*3);
+  for(i=0;i<SN;i++){sp[i*3]=(Math.random()-.5)*260;sp[i*3+1]=(Math.random()-.5)*160;sp[i*3+2]=-60-Math.random()*80}
+  var sgeo=new THREE.BufferGeometry();sgeo.setAttribute('position',new THREE.BufferAttribute(sp,3));
+  var stars=new THREE.Points(sgeo,new THREE.PointsMaterial({size:.5,map:mat.map,color:0x5d7f8a,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
+  scene.add(stars);
 
   var COL={lagoa:[.25,.83,.65],hort:[.54,.66,1],lava:[1,.48,.29],areia:[.94,.85,.64],gelo:[.81,.89,.91],dim:[.25,.36,.42]};
   var ISLE=[COL.areia,COL.hort,COL.lagoa,COL.lava,COL.gelo];
@@ -665,15 +879,16 @@ function initGL(){
   var L={src:[],orb:{x:0,y:0},out:{x:20,y:0},card:{x:15,y:0,h:30},track:{y:10}};
   var FRAG=48,fc=[];
   for(var f=0;f<FRAG;f++){var a=Math.random()*6.283,b=Math.acos(2*Math.random()-1),rr=Math.cbrt(Math.random());fc.push([Math.sin(b)*Math.cos(a)*rr,Math.cos(b)*rr,Math.sin(b)*Math.sin(a)*rr,f%5,Math.random()*6.283])}
-  var ISC=[[-9,0,-4],[8,0,-9],[11,0,6],[-5,0,9],[1,0,-1]];
-  var TILT=.5,ct=Math.cos(TILT),st=Math.sin(TILT);
+  var ISC=[[-9,0,-4],[8,0,-9],[11,0,6],[-5,0,9],[1,0,-1]],HUB=[1.5,9,0];
+  var TILT=.5,ct=Math.cos(TILT),stl=Math.sin(TILT);
   var labelsEl=$('labels'),labels=[];
-  ['Pessoas','RCD','SharePoint','EasyVista','Formatos'].forEach(function(t,k){
+  ['Pessoas','RCD','SharePoint','EasyVista','Formatos','GitLab'].forEach(function(t,k){
     var e=document.createElement('div');e.className='isle-label';e.textContent=t;
-    e.style.color='rgb('+ISLE[k].map(function(v){return Math.round(v*255)}).join(',')+')';
+    var c=k<5?ISLE[k]:COL.lagoa;
+    e.style.color='rgb('+c.map(function(v){return Math.round(v*255)}).join(',')+')';
     labelsEl.appendChild(e);labels.push(e);
   });
-  var mx=0,my=0,rx=0,ry=0,active=0;
+  var mx=0,my=0,rx=0,ry=0,active=0,yaw=0,yawV=0,camZ=60,camV=0,camKick=0;
   function isleOx(){return wide?halfW*.44:0}
   function isleS(){return wide?Math.min(halfW*.42,18)/14:halfH*.6/14}
 
@@ -694,12 +909,16 @@ function initGL(){
   }
   function resize(){
     W=window.innerWidth;H=window.innerHeight;
-    renderer.setSize(W,H,false);camera.aspect=W/H;camera.updateProjectionMatrix();
+    renderer.setSize(W,H,false);if(composer)composer.setSize(W,H);
+    camera.aspect=W/H;camera.updateProjectionMatrix();
     halfW=halfH*camera.aspect;measure();
   }
-
+  function isle(k,x,y,z,out){ /* island-local coords → world (tilted, scaled, offset) */
+    var s=isleS();out[0]=isleOx()+x*s;out[1]=(y*ct-z*stl)*s-2;out[2]=(y*stl+z*ct)*s;return out;
+  }
+  var tmp=[0,0,0];
   function setc(i,c,k){TC[i*3]=c[0]*k;TC[i*3+1]=c[1]*k;TC[i*3+2]=c[2]*k}
-  function form(t){
+  function form(t,ft){
     var i,x,y,z,ox,s,k;
     switch(active){
     case 0: // fragmented cloud
@@ -710,34 +929,46 @@ function initGL(){
         T[i*3+2]=q[2]*s+Math.sin(ph)*Math.sin(th)*rad;
         setc(i,ISLE[q[3]],.55+.45*r4[i]);}
       break;
-    case 1: // archipelago
-      ox=isleOx();s=isleS();
-      for(i=0;i<N;i++){k=i%5;var c=ISC[k],d=Math.sqrt(r1[i]),a2=r2[i]*6.283,rad2=(k===0?4.2:3.6)*d;
+    case 1: // archipelago, optionally bridged to a GitLab hub
+      for(i=0;i<N;i++){k=i%5;var c=ISC[k];
+        if(st.bridges&&r4[i]<.07){ /* hub */
+          var hy=1-2*r1[i],hr=Math.sqrt(1-hy*hy),hth=r2[i]*6.283+t*.8;
+          isle(k,HUB[0]+Math.cos(hth)*hr*1.6,HUB[1]+hy*1.6,HUB[2]+Math.sin(hth)*hr*1.6,tmp);
+          T[i*3]=tmp[0];T[i*3+1]=tmp[1];T[i*3+2]=tmp[2];setc(i,COL.lagoa,1);continue;
+        }
+        if(st.bridges&&r4[i]<.3){ /* bridge particle flowing island → hub */
+          var p=(r1[i]+t*.25)%1,cy0=(k===0?4:3);
+          x=c[0]+(HUB[0]-c[0])*p;z=c[2]+(HUB[2]-c[2])*p;y=cy0+(HUB[1]-cy0)*p+Math.sin(p*Math.PI)*2.5;
+          isle(k,x+(r2[i]-.5)*.3,y+(r3[i]-.5)*.3,z,tmp);
+          T[i*3]=tmp[0];T[i*3+1]=tmp[1];T[i*3+2]=tmp[2];
+          var mixb=p;TC[i*3]=ISLE[k][0]*(1-mixb)+COL.lagoa[0]*mixb;TC[i*3+1]=ISLE[k][1]*(1-mixb)+COL.lagoa[1]*mixb;TC[i*3+2]=ISLE[k][2]*(1-mixb)+COL.lagoa[2]*mixb;continue;
+        }
+        var d=Math.sqrt(r1[i]),a2=r2[i]*6.283,rad2=(k===0?4.2:3.6)*d;
         x=c[0]+Math.cos(a2)*rad2;z=c[2]+Math.sin(a2)*rad2*.8;y=Math.pow(1-d,2)*(k===0?4:3)+(r3[i]-.5)*.4+Math.sin(t*.8+k)*.3;
-        T[i*3]=ox+x*s;T[i*3+1]=(y*ct-z*st)*s-2;T[i*3+2]=(y*st+z*ct)*s;
-        setc(i,ISLE[k],(hl2<0||hl2===k)?(.55+.5*(1-d)):.14);}
+        isle(k,x,y,z,tmp);T[i*3]=tmp[0];T[i*3+1]=tmp[1];T[i*3+2]=tmp[2];
+        setc(i,ISLE[k],(st.hl2<0||st.hl2===k)?(.55+.5*(1-d)):.14);}
       break;
     case 2: // stack of pages behind the card
-      var hc=L.card.h,sp=hc/18;
+      var hc=L.card.h,spc=hc/18;
       for(i=0;i<N;i++){k=i%6;var j=Math.floor(r1[i]*20),len=.35+.65*((Math.sin(j*12.9898+k*78.233)*43758.5453)%1+1)%1;
         if(j===0)len=.8;
         x=-6+r2[i]*12*len;y=8.2-j*.85+(r3[i]-.5)*.12;
-        T[i*3]=L.card.x+(x+k*1.3)*sp*1.05;T[i*3+1]=L.card.y+(y+k*.9)*sp*1.05;T[i*3+2]=-4-k*3.2;
+        T[i*3]=L.card.x+(x+k*1.3)*spc*1.05;T[i*3+1]=L.card.y+(y+k*.9)*spc*1.05+Math.sin(t*.6+k)*.25;T[i*3+2]=-4-k*3.2;
         setc(i,j===0?COL.lagoa:(k<2?COL.gelo:COL.hort),(j===0?1:.7)*(1-k*.12));}
       break;
     case 3: // four streams into the agent, one stream out to GitLab
-      var ns=Math.floor(N*.7),no=Math.floor(N*.84),O=L.orb;
+      var ns=Math.floor(N*.7),no=Math.floor(N*.84),O=L.orb,busy=st.flow>2.5;
       for(i=0;i<N;i++){
-        if(i<ns){k=i%4;var S0=L.src[k]||{x:-halfW*.8,y:0},p=(r1[i]+t*.11)%1,u=1-p;
+        if(i<ns){k=i%4;var S0=L.src[k]||{x:-halfW*.8,y:0},pp=(r1[i]+ft*.11)%1,u=1-pp;
           var cx2=(S0.x+O.x)/2,cy2=S0.y;
-          x=u*u*S0.x+2*u*p*cx2+p*p*O.x;y=u*u*S0.y+2*u*p*cy2+p*p*O.y;
-          var jit=(1-p)*1.4;
+          x=u*u*S0.x+2*u*pp*cx2+pp*pp*O.x;y=u*u*S0.y+2*u*pp*cy2+pp*pp*O.y;
+          var jit=(1-pp)*1.4;
           T[i*3]=x+(r2[i]-.5)*jit;T[i*3+1]=y+(r3[i]-.5)*jit;T[i*3+2]=(r4[i]-.5)*2*jit;
-          setc(i,STREAM[k],(hl4<0||hl4===k)?(.45+.55*p):.1);}
-        else if(i<no){var m=i-ns,M=no-ns,yy=1-2*(m+.5)/M,rr2=Math.sqrt(1-yy*yy),th2=m*2.39996+t*.6,R=3.4+Math.sin(t*2+m)*.15;
+          setc(i,STREAM[k],(st.hl4<0||st.hl4===k)?(.45+.55*pp):.08);}
+        else if(i<no){var m=i-ns,M=no-ns,yy=1-2*(m+.5)/M,rr2=Math.sqrt(1-yy*yy),th2=m*2.39996+ft*.6,R=(busy?4.2:3.4)+Math.sin(t*(busy?9:2)+m)*(busy?.35:.15);
           T[i*3]=O.x+Math.cos(th2)*rr2*R;T[i*3+1]=O.y+yy*R;T[i*3+2]=Math.sin(th2)*rr2*R;
-          setc(i,COL.gelo,.9);}
-        else{var p2=(r1[i]+t*.14)%1,x0=O.x+3.5;
+          setc(i,busy?COL.lagoa:COL.gelo,busy?1.2:.9);}
+        else{var p2=(r1[i]+ft*.14)%1,x0=O.x+3.5;
           T[i*3]=x0+p2*(L.out.x-x0);T[i*3+1]=O.y+(L.out.y-O.y)*p2+(r2[i]-.5)*(.4+p2*2);T[i*3+2]=(r3[i]-.5)*1.5;
           setc(i,COL.lagoa,.6+.4*p2);}
       }
@@ -750,49 +981,94 @@ function initGL(){
       break;
     case 5: // helix timeline
       var x1=-halfW*.92,x2=halfW*.92;
-      for(i=0;i<N;i++){var u2=r1[i],ang=u2*44+t*.7+(i%2)*Math.PI;
-        k=Math.min(3,Math.floor(u2*4));
-        T[i*3]=x1+u2*(x2-x1);T[i*3+1]=L.track.y+Math.sin(ang)*1.3+(r2[i]-.5)*.3;T[i*3+2]=Math.cos(ang)*1.3-3;
-        setc(i,STREAM[[0,1,2,3][k]],.5+.5*(Math.cos(ang)*.5+.5));}
+      for(i=0;i<N;i++){var u2=r1[i];k=Math.min(3,Math.floor(u2*4));
+        var on=st.hl6<0||st.hl6===k,amp=(st.hl6===k?2.2:1.3),ang=u2*44+t*(st.hl6===k?2:.7)+(i%2)*Math.PI;
+        T[i*3]=x1+u2*(x2-x1);T[i*3+1]=L.track.y+Math.sin(ang)*amp+(r2[i]-.5)*.3;T[i*3+2]=Math.cos(ang)*amp-3;
+        setc(i,STREAM[k],(on?1:.18)*(.5+.5*(Math.cos(ang)*.5+.5)));}
       break;
-    case 6: // consolidated sphere
+    case 6: // consolidated sphere, lit band by band by the checklist
       ox=wide?halfW*.45:0;var R2=wide?Math.min(halfH*.62,halfW*.36):halfH*.5;
-      for(i=0;i<N;i++){var y3=1-2*(i+.5)/N,r3b=Math.sqrt(1-y3*y3),th3=i*2.39996+t*.12;
-        T[i*3]=ox+Math.cos(th3)*r3b*R2;T[i*3+1]=y3*R2;T[i*3+2]=Math.sin(th3)*r3b*R2;
-        var mixv=(y3+1)/2;TC[i*3]=COL.lagoa[0]*mixv+COL.hort[0]*(1-mixv);TC[i*3+1]=COL.lagoa[1]*mixv+COL.hort[1]*(1-mixv);TC[i*3+2]=COL.lagoa[2]*mixv+COL.hort[2]*(1-mixv);}
+      var all=st.asks.every(function(v){return v});
+      var Rb=R2*(1+(all?Math.sin(t*2.4)*.035:0)+st.burst*.25);
+      for(i=0;i<N;i++){var y3=1-2*(i+.5)/N,r3b=Math.sqrt(1-y3*y3),th3=i*2.39996+t*(all?.3:.12);
+        var band=Math.min(4,Math.floor((1-y3)/2*5)),lit=st.asks[band];
+        var rj=lit?Rb:Rb*(.94+r2[i]*.12);
+        T[i*3]=ox+Math.cos(th3)*r3b*rj;T[i*3+1]=y3*rj;T[i*3+2]=Math.sin(th3)*r3b*rj;
+        var mixv=(y3+1)/2,br=lit?(all?1.25:1):.22;
+        TC[i*3]=(COL.lagoa[0]*mixv+COL.hort[0]*(1-mixv))*br;TC[i*3+1]=(COL.lagoa[1]*mixv+COL.hort[1]*(1-mixv))*br;TC[i*3+2]=(COL.lagoa[2]*mixv+COL.hort[2]*(1-mixv))*br;}
       break;
     }
+  }
+  /* pointer: repel on the cloud and the sphere, click bursts the cloud */
+  function interact(){
+    if(!(active===0||active===6)||!hover)return;
+    var wx=mx*halfW,wy=-my*halfH,R=7,R2=R*R;
+    for(var i=0;i<N;i++){var dx=T[i*3]-wx,dy=T[i*3+1]-wy,d2=dx*dx+dy*dy;
+      if(d2<R2&&d2>.0001){var d=Math.sqrt(d2),f=(R-d)/R*4.5;T[i*3]+=dx/d*f;T[i*3+1]+=dy/d*f;T[i*3+2]+=f*.6}}
+  }
+  function burstApply(){
+    if(active!==0||st.burst<.01)return;
+    var cx=wide?halfW*.42:0;
+    for(var i=0;i<N;i++){var dx=T[i*3]-cx,dy=T[i*3+1],dz=T[i*3+2];T[i*3]+=dx*st.burst*1.2;T[i*3+1]+=dy*st.burst*1.2;T[i*3+2]+=dz*st.burst*1.2}
   }
   var v=new THREE.Vector3();
   function placeLabels(){
     var show=active===1&&wide;
-    for(var k=0;k<5;k++){
+    for(var k=0;k<6;k++){
       var e=labels[k];
-      if(!show){e.classList.remove('on');continue}
-      var s=isleS(),c=ISC[k],y=(k===0?4:3)+1.2;
-      v.set(isleOx()+c[0]*s,(y*ct-c[2]*st)*s-2,(y*st+c[2]*ct)*s).applyMatrix4(pts.matrixWorld).project(camera);
+      if(!show||(k===5&&!st.bridges)){e.classList.remove('on');continue}
+      var c=k<5?ISC[k]:HUB,y=k<5?(k===0?4:3)+1.2:HUB[1]+2.4;
+      isle(k,c[0],y,c[2],tmp);
+      v.set(tmp[0],tmp[1],tmp[2]).applyMatrix4(pts.matrixWorld).project(camera);
       e.style.transform='translate('+((v.x*.5+.5)*W)+'px,'+((-v.y*.5+.5)*H)+'px) translate(-50%,-100%)';
-      e.classList.add('on');e.classList.toggle('hl',hl2===k);
+      e.classList.add('on');e.classList.toggle('hl',st.hl2===k||(k===5&&st.bridges));
     }
   }
-  var clock=new THREE.Clock(),tt=0;
+  var clock=new THREE.Clock(),tt=0,ft=0,hover=false;
   function frame(){
-    var dt=Math.min(clock.getDelta(),.05);if(!reduce)tt+=dt;
-    form(tt);
+    var dt=Math.min(clock.getDelta(),.05);
+    if(!reduce){tt+=dt;ft+=dt*st.flow}
+    form(tt,ft);interact();burstApply();
+    st.burst*=Math.pow(.08,dt);
     var e=reduce?1:1-Math.pow(.02,dt),ec=reduce?1:1-Math.pow(.05,dt);
     for(var i=0;i<N*3;i++){P[i]+=(T[i]-P[i])*e;C[i]+=(TC[i]-C[i])*ec}
     pa.needsUpdate=true;ca.needsUpdate=true;
-    if(!reduce){rx+=(my*.08-rx)*.04;ry+=(mx*.14-ry)*.04}
-    pts.rotation.x=rx;pts.rotation.y=ry;
-    mat.opacity=(!wide&&active!==4)?.45:(active===4?.6:.95);
-    renderer.render(scene,camera);pts.updateMatrixWorld();
+    if(!reduce){
+      rx+=(my*.08-rx)*.04;ry+=(mx*.14-ry)*.04;
+      if(!dragging){yaw+=yawV;yawV*=.94;var back=(active===1||active===0||active===6)?.002:.06;yaw+=(0-yaw)*back}
+      /* camera dolly: a short pull-back on every slide change, then settle */
+      camV+=(60+camKick-camZ)*.06;camV*=.78;camZ+=camV;camKick*=.9;
+      camera.position.z=camZ;
+      stars.rotation.y+=dt*.004;
+    }
+    pts.rotation.x=rx;pts.rotation.y=ry+yaw;
+    mat.opacity=(!wide&&active!==4)?.42:(active===4?.55:.9);
+    if(composer)composer.render();else renderer.render(scene,camera);
+    pts.updateMatrixWorld();
     placeLabels();
     requestAnimationFrame(frame);
   }
-  window.addEventListener('pointermove',function(e){mx=e.clientX/W*2-1;my=e.clientY/H*2-1},{passive:true});
+  /* drag to rotate (mouse only; touch keeps swipe navigation) */
+  var dragging=false,lastX=0;
+  var blocked='button,a,pre,.doc,.flip,.panel,.src,.qbtn,.asks,.repo,.detail,.notes-panel,.bar';
+  document.addEventListener('pointerdown',function(e){
+    if(e.pointerType!=='mouse'||e.button!==0||e.target.closest(blocked))return;
+    if(!(active===0||active===1||active===6))return;
+    dragging=true;lastX=e.clientX;document.body.classList.add('dragging');
+    if(active===0&&!reduce)st.burst=Math.max(st.burst,.6);
+  });
+  window.addEventListener('pointermove',function(e){
+    mx=e.clientX/W*2-1;my=e.clientY/H*2-1;hover=e.pointerType==='mouse';
+    if(dragging){var dx=e.clientX-lastX;lastX=e.clientX;yawV=dx*.0025;yaw+=yawV}
+  },{passive:true});
+  window.addEventListener('pointerup',function(){dragging=false;document.body.classList.remove('dragging')});
+  document.addEventListener('mouseleave',function(){hover=false});
   window.addEventListener('resize',resize);
   resize();requestAnimationFrame(frame);
-  return {enter:function(i){active=i;measure();setTimeout(measure,450);setTimeout(measure,900)}};
+  return {enter:function(i){
+    if(i!==active&&!reduce)camKick=14;
+    active=i;measure();setTimeout(measure,450);setTimeout(measure,900);
+  }};
 }
 
 /* ---------- start ---------- */

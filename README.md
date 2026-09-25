@@ -14,6 +14,8 @@ Iniciativa para consolidar o conhecimento sobre as aplicações da EDA num repos
 - `←` `→`, `Page Up`/`Page Down` ou deslizar no telemóvel para mudar de slide
 - `N` mostra as notas do orador
 - `#s4` no fim do endereço abre diretamente o slide 4
+- Arrastar com o rato roda a cena 3D nos slides 1, 2 e 7
+- Cada slide tem uma interação: pontes entre fontes (2), cartão Markdown/PDF (3), execução simulada do agente (4), perguntas ao repositório (5), fases da linha do tempo (6) e lista de decisão (7)
 
 A apresentação carrega fontes (Google Fonts) e o Three.js (cdnjs) da internet. Sem ligação, o conteúdo continua legível mas sem a cena 3D.
 

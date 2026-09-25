@@ -11,6 +11,8 @@ slides: 7
 
 **O conhecimento da EDA passa a viver no código.**
 
+Interação: arrastar a nuvem para a rodar; clicar para a dispersar.
+
 Documentação como código: um só repositório GitLab, em Markdown, escrito e lido por pessoas e por IA. Começamos pelo SAP IS-U.
 
 > Notas: hoje o conhecimento sobre as nossas aplicações está sobretudo nas pessoas. A proposta é tratá-lo como tratamos o código: versionado, revisto e sempre atualizado. A nuvem de partículas representa o conhecimento fragmentado; no último slide aparece consolidado.
@@ -26,6 +28,8 @@ Documentação como código: um só repositório GitLab, em Markdown, escrito e 
 | Word, PDF, Excel, imagens | Difíceis de pesquisar, comparar e manter |
 
 Cinco ilhas sem pontes. Cada pergunta sobre uma aplicação depende de encontrar a pessoa certa.
+
+Interação: o botão "Construir as pontes" liga as cinco ilhas a um repositório comum no GitLab.
 
 ## 3. A mudança
 
@@ -48,9 +52,13 @@ Fluxo: `.md` → merge request → pipeline CI → PDF · portal · assistente I
 
 Um agente de IA (Codex ou Claude Code) lê, cruza e escreve Markdown no repositório `sap-isu-docs`. O número da evolutiva na descrição da OT é o que liga o código ao pedido de negócio.
 
+Interação: o botão "Executar o agente" simula a execução passo a passo (fontes, cruzamento, novos ficheiros e merge request).
+
 ## 5. O resultado
 
 Um ficheiro por objeto, em que cada secção cita a sua fonte (código, OT, EasyVista, SharePoint). Tudo o que a IA gera entra por merge request e só é publicado depois de validado.
+
+Interação: "Pergunte ao repositório" responde a três perguntas de análise de impacto, cita as fontes e destaca as linhas usadas.
 
 > Notas: o exemplo mostrado é ilustrativo. O objeto e os números de OT e evolutiva são fictícios.
 
@@ -81,5 +89,7 @@ Critérios de escolha do processo: muito código Z, muitas evolutivas, poucas pe
 3. Ferramentas de IA em regime empresarial para duas a três pessoas
 4. Duas a três pessoas key user, cerca de 2 horas por semana nas semanas 7 e 8
 5. Parecer de segurança e RGPD antes da extração de dados
+
+Interação: cada pedido pode ser marcado; a esfera acende por faixas até ficar completa.
 
 Se resultar no IS-U, o mesmo modelo aplica-se às restantes aplicações da EDA.
