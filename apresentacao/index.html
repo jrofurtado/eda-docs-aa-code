@@ -243,7 +243,7 @@ pre{margin:0;font:400 clamp(.64rem,1.05vw,.8rem)/1.65 var(--mono);white-space:pr
 .w{display:inline-block;transition:opacity .6s ease,transform .8s cubic-bezier(.2,.8,.2,1),filter .6s;transition-delay:calc(var(--d,0) * 45ms + .15s)}
 .slide:not(.active) .w{opacity:0;transform:translateY(.5em) rotateX(40deg);filter:blur(6px)}
 .drag-hint{font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-body.dragging,body.dragging *{cursor:grabbing!important}
+body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none!important;user-select:none!important}
 
 /* buttons that do something */
 .act{appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:.6rem;
@@ -1054,6 +1054,7 @@ function initGL(){
   document.addEventListener('pointerdown',function(e){
     if(e.pointerType!=='mouse'||e.button!==0||e.target.closest(blocked))return;
     if(!(active===0||active===1||active===6))return;
+    e.preventDefault();try{var sel=window.getSelection();if(sel)sel.removeAllRanges()}catch(x){}
     dragging=true;lastX=e.clientX;document.body.classList.add('dragging');
     if(active===0&&!reduce)st.burst=Math.max(st.burst,.6);
   });
@@ -1062,6 +1063,8 @@ function initGL(){
     if(dragging){var dx=e.clientX-lastX;lastX=e.clientX;yawV=dx*.0025;yaw+=yawV}
   },{passive:true});
   window.addEventListener('pointerup',function(){dragging=false;document.body.classList.remove('dragging')});
+  window.addEventListener('pointercancel',function(){dragging=false;document.body.classList.remove('dragging')});
+  document.addEventListener('selectstart',function(e){if(dragging)e.preventDefault()});
   document.addEventListener('mouseleave',function(){hover=false});
   window.addEventListener('resize',resize);
   resize();requestAnimationFrame(frame);
