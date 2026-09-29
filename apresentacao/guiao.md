@@ -7,6 +7,10 @@ slides: 7
 
 # Guião da apresentação
 
+## 0. Intro (só na versão EDA)
+
+Ecrã inicial com "Iniciar apresentação". Ao clicar, cerca de 6 segundos: referências dispersas (ficheiros Word e PDF, evolutivas, OTs) desfazem-se em partículas que formam um documento Markdown, com contagem 03 · 02 · 01, e um varrimento amarelo EDA abre o slide 1. `Esc` ou "Saltar" passa à frente; `I` repete a intro.
+
 ## 1. Abertura
 
 **O conhecimento da EDA passa a viver no código.**
