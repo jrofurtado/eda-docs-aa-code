@@ -9,7 +9,13 @@ slides: 7
 
 ## 0. Intro (só na versão EDA)
 
-Ecrã inicial com "Iniciar apresentação". Ao clicar, cerca de 6 segundos: referências dispersas (ficheiros Word e PDF, evolutivas, OTs) desfazem-se em partículas que formam um documento Markdown, com contagem 03 · 02 · 01, e um varrimento amarelo EDA abre o slide 1. `Esc` ou "Saltar" passa à frente; `I` repete a intro.
+Ecrã inicial com "Iniciar apresentação". Ao clicar, cerca de 7 segundos em três atos, com o estado sempre indicado no canto:
+
+1. **Antes:** referências dispersas em cinzento (ficheiros Word e PDF, evolutivas, OTs, "quem sabe disto?"). Conhecimento disperso, dependente de pessoas.
+2. **Agentes IA:** quatro agentes (código, OT, EasyVista, SharePoint) lançam feixes às referências, que ganham cor ao ser lidas. As partículas entram em cada agente, ficam amarelas e saem para escrever um documento Markdown.
+3. **Depois:** o documento fica nítido, com os agentes ligados a ele: 4 fontes, 1 repositório, versionado, revisto por pessoas.
+
+A contagem 03 · 02 · 01 acompanha os atos e um varrimento amarelo EDA abre o slide 1. `Esc` ou "Saltar" passa à frente; `I` repete a intro.
 
 ## 1. Abertura
 
