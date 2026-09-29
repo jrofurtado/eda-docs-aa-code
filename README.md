@@ -7,7 +7,7 @@ Iniciativa para consolidar o conhecimento sobre as aplicações da EDA num repos
 | Caminho | O que é |
 | --- | --- |
 | `apresentacao/index.html` | Apresentação interativa para a direção (7 slides, cena 3D com Three.js). Abrir num browser. |
-| `apresentacao/versao-eda.html` | A mesma apresentação com a identidade da EDA: Montserrat, amarelo #ffd200 e cinzentos #878787 e #ededed. Tem tema claro e escuro (tecla `T`) e uma intro animada de abertura (tecla `I` para rever). |
+| `apresentacao/versao-eda.html` | A mesma apresentação com a identidade da EDA: Montserrat, amarelo #ffd200 e cinzentos #878787 e #ededed. Tem tema claro e escuro (tecla `T`), intro animada de 25 segundos em cinco atos (tecla `I` para rever), som sintetizado por código (tecla `M` para silenciar) e um slide 8 de bastidores sobre como a apresentação foi feita. |
 | `apresentacao/guiao.md` | Conteúdo e notas do orador de cada slide, em Markdown. |
 
 ## Navegação na apresentação

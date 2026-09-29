@@ -9,7 +9,15 @@ slides: 7
 
 ## 0. Intro (só na versão EDA)
 
-Ecrã inicial com "Iniciar apresentação". Ao clicar, cerca de 6 segundos: referências dispersas (ficheiros Word e PDF, evolutivas, OTs) desfazem-se em partículas que formam um documento Markdown, com contagem 03 · 02 · 01, e um varrimento amarelo EDA abre o slide 1. `Esc` ou "Saltar" passa à frente; `I` repete a intro.
+Ecrã inicial com "Iniciar apresentação". Ao clicar, cerca de 25 segundos em cinco atos, com legenda sempre visível no canto e som sintetizado (tecla `M` para silenciar):
+
+1. **Hoje:** referências dispersas em cinzento (ficheiros Word e PDF, evolutivas, OTs, "quem sabe disto?").
+2. **A IA recolhe:** um núcleo de IA surge com uma onda de choque. Um varrimento tipo radar lê cada referência, que se desfaz em partículas e entra em espiral no núcleo.
+3. **Escreve Markdown:** o núcleo desloca-se e escreve o documento `.md`, que fica emoldurado no GitLab com o selo "merge request · revisto por pessoas".
+4. **Dois leitores:** do documento partem dois caminhos. Uma segunda IA lê o Markdown e responde a uma pergunta com fontes. O PDF gerado desdobra-se e uma pessoa lê-o.
+5. **A proposta:** "Escrita por IA. Revista por pessoas. Lida por todos." Um varrimento amarelo EDA abre o slide 1.
+
+`→` passa ao ato seguinte, `Esc` salta a intro, `I` repete-a.
 
 ## 1. Abertura
 
@@ -97,3 +105,13 @@ Critérios de escolha do processo: muito código Z, muitas evolutivas, poucas pe
 Interação: cada pedido pode ser marcado; a esfera acende por faixas até ficar completa.
 
 Se resultar no IS-U, o mesmo modelo aplica-se às restantes aplicações da EDA.
+
+## 8. Bastidores: como esta apresentação foi feita
+
+**Esta apresentação é, ela própria, documentação como código.**
+
+- Um ficheiro HTML num repositório Git, com este guião em Markdown ao lado.
+- Feita com Claude Code, a partir de pedidos em português, sem ferramentas de design nem de vídeo.
+- 3D, animação e som gerados por código: nenhum ficheiro de imagem, vídeo ou áudio.
+
+O painel mostra o `git log` real, com o pedido que originou cada commit. Uma das versões (a intro com quatro agentes) foi revertida, o que mostra o controlo de versões a funcionar. O botão "Reproduzir o histórico" percorre a evolução passo a passo.
