@@ -6,7 +6,7 @@ As marcas entre parênteses retos duplos, como `[[pontes]]`, não são lidas. In
 
 ## 1 · Abertura
 
-Hoje, grande parte do que sabemos sobre as nossas aplicações está na cabeça das pessoas. Esta proposta muda isso: a documentação passa a ser tratada como código. Vive num único repositório GitLab, é escrita em Markdown, e é lida por pessoas e por inteligência artificial. Começamos por uma prova de conceito no SAP IS-U.
+Hoje, grande parte do que sabemos sobre as nossas aplicações está na cabeça das pessoas. Esta proposta muda isso: a documentação passa a ser tratada como código. Vive num único repositório GitLab, é escrita em Markdown, e é lida por pessoas e por inteligência artificial. Começamos por uma prova de conceito no SAP for Utilities.
 
 ## 2 · Hoje
 
@@ -18,7 +18,7 @@ Porquê Markdown? Porque a documentação vai ser escrita e lida sobretudo por i
 
 ## 4 · Prova de conceito
 
-A prova de conceito aplica isto ao SAP IS-U, com quatro fontes. O código ABAP, exportado com o abapGit, diz-nos o quê. As ordens de transporte dizem quando e quem. As evolutivas do EasyVista explicam porquê. E a documentação dos projetos no SharePoint dá o contexto. [[agente]] Um agente de inteligência artificial lê as quatro fontes, cruza-as e escreve a documentação. O resultado entra por merge request, para ser revisto por quem conhece o sistema.
+A prova de conceito aplica isto ao SAP for Utilities, com quatro fontes. O código ABAP, exportado com o abapGit, diz-nos o quê. As ordens de transporte dizem quando e quem. As evolutivas do EasyVista explicam porquê. E a documentação dos projetos no SharePoint dá o contexto. [[agente]] Um agente de inteligência artificial lê as quatro fontes, cruza-as e escreve a documentação. O resultado entra por merge request, para ser revisto por quem conhece o sistema.
 
 ## 5 · Resultado
 
@@ -30,7 +30,7 @@ O plano tem oito semanas. Nas duas primeiras, escolhemos o processo e validamos 
 
 ## 7 · Decisão
 
-Para arrancar, precisamos de cinco coisas. [[pedido1]] A aprovação da prova de conceito. [[pedido2]] Acessos de leitura aos sistemas. [[pedido3]] Ferramentas de inteligência artificial em regime empresarial. [[pedido4]] Algum tempo dos key users. [[pedido5]] E o parecer de segurança e de proteção de dados. Se resultar no IS-U, o mesmo modelo aplica-se às restantes aplicações da EDA.
+Para arrancar, precisamos de cinco coisas. [[pedido1]] A aprovação da prova de conceito. [[pedido2]] Acessos de leitura aos sistemas. [[pedido3]] Ferramentas de inteligência artificial em regime empresarial. [[pedido4]] Algum tempo dos key users. [[pedido5]] E o parecer de segurança e de proteção de dados. Se resultar no SAP for Utilities, o mesmo modelo aplica-se às restantes aplicações da Eletricidade dos Açores.
 
 ## 8 · Bastidores
 
