@@ -10,6 +10,8 @@
 //
 // Uso:
 //   ELEVENLABS_API_KEY=... ELEVENLABS_VOICE_ID=... node apresentacao/ferramentas/gerar-narracao.mjs
+//   node apresentacao/ferramentas/gerar-narracao.mjs --chave-no-proxy --voz <voice_id>
+//     (em ambientes que injetam o cabeçalho xi-api-key nos pedidos a api.elevenlabs.io)
 //   node apresentacao/ferramentas/gerar-narracao.mjs --sem-audio
 // Opções: --voz <voice_id>  --modelo <model_id>  --slides 2,5  --forcar
 // Só volta a pedir áudio para os slides cujo texto, voz ou modelo mudaram.
@@ -28,7 +30,8 @@ const KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE = opt('--voz', process.env.ELEVENLABS_VOICE_ID || '');
 const MODEL = opt('--modelo', process.env.ELEVENLABS_MODEL_ID || 'eleven_multilingual_v2');
 const ONLY = opt('--slides', '') ? opt('--slides', '').split(',').map(Number) : null;
-const WITH_AUDIO = Boolean(KEY) && !has('--sem-audio');
+const PROXY_KEY = has('--chave-no-proxy') || process.env.ELEVENLABS_KEY_VIA_PROXY === '1';
+const WITH_AUDIO = (Boolean(KEY) || PROXY_KEY) && !has('--sem-audio');
 
 if (WITH_AUDIO && !VOICE) {
   console.error('Falta a voz: defina ELEVENLABS_VOICE_ID ou use --voz <voice_id>.');
@@ -96,7 +99,7 @@ async function tts(text) {
   const url = `https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(VOICE)}/with-timestamps?output_format=mp3_44100_128`;
   const res = await fetch(url, {
     method: 'POST',
-    headers: { 'xi-api-key': KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: { ...(KEY ? { 'xi-api-key': KEY } : {}), 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({ text, model_id: MODEL, voice_settings: { stability: .5, similarity_boost: .8, style: .15, use_speaker_boost: true } }),
   });
   if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${(await res.text()).slice(0, 300)}`);
