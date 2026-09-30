@@ -377,6 +377,34 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
 .mutebtn[aria-pressed="true"]{opacity:.7}
 @media (max-width:760px){.intro-hud .steps{display:none}.intro-state span{display:none}}
 
+/* cinematic slide transitions: slides swing in and out along the camera path */
+.deck{perspective:1800px;perspective-origin:50% 45%}
+.slide{transform:translate3d(var(--ox,0),var(--oy,22px),var(--oz,0)) rotateY(var(--or,0deg));transform-origin:50% 50%}
+.slide.noanim{transition:none!important}
+/* narrated mode: captions word by word */
+body.narrating .slide{padding-bottom:calc(var(--bottom) + 120px)}
+body.narrating .bar.bottom .nav .lbl{display:none}
+.caption{position:fixed;z-index:6;left:calc(var(--gutter) + 330px);right:calc(var(--gutter) + 300px);bottom:calc(var(--bottom) + 10px);
+  background:var(--glass-2);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:4px;padding:.8rem 1rem;box-shadow:var(--shadow);
+  backdrop-filter:blur(10px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1rem;align-items:center;cursor:pointer;animation:capIn .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes capIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.caption .eq{display:flex;gap:3px;align-items:flex-end;height:18px;width:22px}
+.caption .eq i{width:4px;height:4px;background:var(--acc);border-radius:1px;transition:height .2s}
+.caption.speaking .eq i{animation:eq .9s ease-in-out infinite}
+.caption.speaking .eq i:nth-child(2){animation-delay:-.3s}.caption.speaking .eq i:nth-child(3){animation-delay:-.6s}.caption.speaking .eq i:nth-child(4){animation-delay:-.15s}
+@keyframes eq{0%,100%{height:4px}50%{height:18px}}
+.caption .txt{font:600 clamp(.9rem,1.2vw,1.08rem)/1.45 var(--font);min-height:1.45em}
+.caption .txt span{color:var(--muted);transition:color .18s,background .18s}
+.caption .txt span.said{color:var(--text)}
+.caption .txt span.now{color:var(--text);background:linear-gradient(transparent 60%,rgba(255,210,0,.6) 60%,rgba(255,210,0,.6) 92%,transparent 92%)}
+.caption .side{display:flex;align-items:center;gap:.6rem;font:700 .64rem/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.caption .next{display:none;background:var(--acc);color:var(--acc-ink);padding:.45rem .65rem;border-radius:14px;animation:pulse 2s ease-out infinite}
+.caption.done .next{display:inline-block}
+.caption.done .state{display:none}
+.caption.paused .state::after{content:" · pausa"}
+@media (max-width:1100px){.caption{left:var(--gutter);right:var(--gutter);bottom:calc(var(--bottom) + 70px)}body.narrating .slide{padding-bottom:calc(var(--bottom) + 190px)}}
+@media (max-width:560px){.caption .side .state{display:none}}
+
 /* slide 8: making-of */
 .mk-list{list-style:none;margin:0;padding:1rem 1.2rem 1.1rem;display:grid;gap:0;max-height:min(62vh,560px);overflow:auto}
 .mk-item{display:grid;grid-template-columns:14px minmax(0,1fr);gap:.15rem .9rem;position:relative;padding-bottom:.85rem;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
@@ -442,7 +470,7 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
     <div class="intro-brand"><b class="mark">EDA</b><span>SICOM</span></div>
     <h1 class="intro-title">Documentação<br>como <em>código</em></h1>
     <p class="intro-sub">Proposta de iniciativa · prova de conceito no SAP IS-U</p>
-    <button class="act intro-go" id="introgo"><span class="play"></span>Iniciar apresentação</button>
+    <div class="row" style="margin-top:1.2rem"><button class="act intro-go" id="introgo" style="margin-top:0"><span class="play"></span>Iniciar apresentação</button><button class="act ghost" id="introgonarr"><span class="play"></span>Iniciar com narração</button></div>
     <p class="intro-keys"><kbd>Enter</kbd> iniciar <span>·</span> <kbd>→</kbd> ato seguinte <span>·</span> <kbd>Esc</kbd> saltar <span>·</span> <kbd>M</kbd> som <span>·</span> <kbd>I</kbd> rever</p>
   </div>
   <div class="intro-state" id="introstate" hidden aria-live="polite"></div>
@@ -469,7 +497,7 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
       <span><b>Formato</b>Markdown → PDF</span>
       <span><b>Prova de conceito</b>SAP IS-U · 8 semanas</span>
     </div>
-    <p class="hint"><kbd>I</kbd> intro <span class="muted">·</span> <kbd>←</kbd><kbd>→</kbd> para navegar <span class="muted">·</span> <kbd>N</kbd> notas <span class="muted">·</span> <kbd>T</kbd> tema <span class="muted">·</span> <kbd>M</kbd> som <span class="muted">·</span> arraste a nuvem ou clique nela</p>
+    <p class="hint"><kbd>I</kbd> intro <span class="muted">·</span> <kbd>←</kbd><kbd>→</kbd> para navegar <span class="muted">·</span> <kbd>N</kbd> notas <span class="muted">·</span> <kbd>T</kbd> tema <span class="muted">·</span> <kbd>M</kbd> som <span class="muted">·</span> <kbd>A</kbd> narração <span class="muted">·</span> arraste a nuvem ou clique nela</p>
   </div><div></div></div></div>
   <aside class="notes"><p>Mensagem de abertura: hoje o conhecimento sobre as nossas aplicações está sobretudo nas pessoas. A proposta é tratá-lo como tratamos o código: versionado, revisto e sempre atualizado.</p><p>A nuvem de partículas representa o conhecimento fragmentado. No último slide aparece consolidado.</p></aside>
 </section>
@@ -703,14 +731,17 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
   <div class="dots" id="dots" role="tablist" aria-label="Slides"></div>
   <div class="nav">
     <button class="navbtn" id="themebtn" title="Tema claro ou escuro (T)" aria-label="Alternar tema claro ou escuro"><span class="sun"></span><span class="lbl">Tema</span></button>
+    <button class="navbtn" id="navnarr" aria-pressed="false" title="Modo narrado (A)"><span class="spk" style="display:none"></span><span>A</span><span class="lbl">Narrar</span></button>
     <button class="navbtn mutebtn" id="navmute" aria-pressed="false" title="Som (M)"><span class="spk"></span><span class="lbl">Som</span></button>
     <button class="navbtn" id="notesbtn" aria-pressed="false" title="Notas do orador (N)"><span>N</span><span class="lbl">Notas</span></button>
     <button class="navbtn" id="prev" aria-label="Slide anterior">←</button>
     <button class="navbtn primary" id="next" aria-label="Slide seguinte"><span class="lbl">Seguinte</span> →</button>
   </div>
 </footer>
+<div class="caption" id="caption" hidden aria-live="polite" title="Clique para pausar ou continuar"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div class="txt" id="captxt"></div><span class="side"><span class="state" id="capstate">narração</span><span class="next">→ continuar</span></span></div>
 <div class="notes-panel" id="notespanel" hidden><h4 id="notestitle">Notas</h4><div id="notesbody"></div></div>
 
+<script src="narracao.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
@@ -938,7 +969,9 @@ function pad(n){return (n<10?'0':'')+n}
 function go(i){
   i=Math.max(0,Math.min(S-1,i));
   if(i===cur)return;
-  if(cur>=0){slides[cur].classList.remove('active');slides[cur].setAttribute('aria-hidden','true');sfx.slide()}
+  var dir=cur<0||i>cur?1:-1,sv=function(el,x,r){el.style.setProperty('--ox',x+'%');el.style.setProperty('--or',r+'deg');el.style.setProperty('--oy','0px');el.style.setProperty('--oz','-140px')};
+  if(cur>=0){var out=slides[cur];sv(out,-dir*8,dir*10);out.classList.remove('active');out.setAttribute('aria-hidden','true');sfx.slide()}
+  var inc=slides[i];if(cur>=0){inc.classList.add('noanim');sv(inc,dir*8,-dir*10);void inc.offsetWidth;inc.classList.remove('noanim')}
   cur=i;slides[i].classList.add('active');slides[i].removeAttribute('aria-hidden');slides[i].scrollTop=0;
   [].forEach.call(dotsEl.children,function(d,k){d.classList.toggle('on',k===i);d.setAttribute('aria-selected',k===i)});
   countEl.innerHTML='<b>'+pad(i+1)+'</b> / '+pad(S);
@@ -949,6 +982,7 @@ function go(i){
   if(i!==3)resetRun();
   if(i===7)replayLog(false);
   if(gl)gl.enter(i);
+  if(typeof narr!=='undefined'&&narr)narr.enter(i+1);
 }
 $('prev').addEventListener('click',function(){go(cur-1)});
 $('next').addEventListener('click',function(){go(cur+1)});
@@ -963,6 +997,7 @@ document.addEventListener('keydown',function(e){
   else if(k==='t'||k==='T'){toggleTheme()}
   else if(k==='i'||k==='I'){showIntro()}
   else if(k==='m'||k==='M'){sfx.toggle()}
+  else if(k==='a'||k==='A'){narr.toggle()}
 });
 var tx=null,ty=null;
 document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
@@ -1066,7 +1101,7 @@ function initGL(){
     paintLabels();
   }
   applyTheme(light);
-  var mx=0,my=0,rx=0,ry=0,active=0,yaw=0,yawV=0,camZ=60,camV=0,camKick=0;
+  var mx=0,my=0,rx=0,ry=0,active=0,yaw=0,yawV=0,camZ=60,camV=0,camKick=0,fly={t:1,dir:1,dy:1};
   function isleOx(){return wide?halfW*.44:0}
   function isleS(){return wide?Math.min(halfW*.42,18)/14:halfH*.6/14}
 
@@ -1235,7 +1270,13 @@ function initGL(){
       if(!dragging){yaw+=yawV;yawV*=.94;var back=(active===1||active===0||active===6)?.002:.06;yaw+=(0-yaw)*back}
       /* camera dolly: a short pull-back on every slide change, then settle */
       camV+=(60+camKick-camZ)*.06;camV*=.78;camZ+=camV;camKick*=.9;
-      camera.position.z=camZ;
+      /* flight between slides: the camera swings round and dives through the scene, then lands on the axis */
+      if(fly.t<1)fly.t=Math.min(1,fly.t+dt/1.6);
+      var fe=fly.t<.5?4*fly.t*fly.t*fly.t:1-Math.pow(-2*fly.t+2,3)/2,fs=Math.sin(Math.PI*fe);
+      var fa=fly.dir*fs*.62,fr=camZ-fs*24;
+      camera.position.set(Math.sin(fa)*fr,fly.dy*fs*8,Math.cos(fa)*fr);camera.lookAt(0,0,0);camera.rotateZ(-fly.dir*fs*.05);
+      if(bloom)bloom.strength=.8+fs*.9;
+      mat.size=(light?.5:.42)*(1+fs*.5);stars.position.z=fs*45;
       stars.rotation.y+=dt*.004;
     }
     pts.rotation.x=rx;pts.rotation.y=ry+yaw;
@@ -1266,7 +1307,7 @@ function initGL(){
   window.addEventListener('resize',resize);
   resize();requestAnimationFrame(frame);
   return {theme:applyTheme,kick:function(){if(!reduce){camKick=26;st.burst=Math.max(st.burst,.5)}},enter:function(i){
-    if(i!==active&&!reduce)camKick=14;
+    if(i!==active&&!reduce){fly.t=0;fly.dir=i>active?1:-1;fly.dy=i%2?1:-1}
     active=i;measure();setTimeout(measure,450);setTimeout(measure,900);
   }};
 }
@@ -1311,7 +1352,7 @@ var sfx=(function(){
     appear:function(){if(!ok())return;var t=ctx.currentTime;tone('sine',55,t,1.6,.22,110,.05);noise(t,1.2,.06,'lowpass',400,2400,.8,.3)},
     hit:function(){if(!ok())return;var t=ctx.currentTime;tone('sine',95,t,1.3,.42,36);noise(t,.7,.2,'lowpass',1600,180,.7,.004);api.chord(.05)},
     ui:function(){if(!ok())return;tone('sine',700,ctx.currentTime,.07,.04,1050)},
-    slide:function(){if(!ok())return;noise(ctx.currentTime,.45,.035,'bandpass',500,1800,1.1)},
+    slide:function(){if(!ok())return;var t=ctx.currentTime;noise(t,1.1,.07,'bandpass',260,2800,1.3,.45);tone('sine',70,t+.55,.7,.07,42,.05)},
     padStart:function(){
       if(!ok()||pad)return;var t=ctx.currentTime;
       var g=ctx.createGain(),fl=ctx.createBiquadFilter();fl.type='lowpass';fl.frequency.setValueAtTime(260,t);fl.frequency.linearRampToValueAtTime(900,t+22);fl.Q.value=2;
@@ -1694,6 +1735,7 @@ var introOn=false,introKey=function(){},showIntro=function(){};
     span.animate([{transform:'translateX(-8%) scale(.9)',opacity:0},{transform:'none',opacity:1}],{duration:coverMs+holdMs,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
     cover.onfinish=function(){
       el.style.display='none';introOn=false;phase='done';
+      if(typeof narr!=='undefined'&&narr&&narr.on())narr.enter(cur+1);
       slides[cur].classList.add('active');
       if(gl&&gl.kick)gl.kick();
       setTimeout(function(){
@@ -1740,6 +1782,67 @@ function replayLog(animate){
   replayTimers.push(setTimeout(function(){sfx.chord(.04)},300+items.length*650));
 }
 $('replaybtn').addEventListener('click',function(){sfx.ui();replayLog(true)});
+/* ---------- narrated mode: generated audio (or estimated timing) with word-level captions ---------- */
+var narr=(function(){
+  var DATA=window.NARRACAO&&window.NARRACAO.slides,btn=$('navnarr'),cap=$('caption'),txt=$('captxt'),stateEl=$('capstate');
+  var none={on:function(){return false},arm:function(){},enter:function(){},toggle:function(){},stop:function(){}};
+  if(!DATA){btn.hidden=true;var gn=$('introgonarr');if(gn)gn.hidden=true;return none}
+  var on=false,audio=null,t0=0,raf=0,timer=0,words=[],cues=[],fired=[],sentOf=[],sents=[],shown=-1,state='idle',pausedAt=0,hasAudio=false;
+  var ACT={
+    pontes:function(){if(!st.bridges)$('bridgebtn').click()},
+    flip:function(){if(!$('flip').classList.contains('back'))$('flipbtn').click()},
+    agente:function(){if(!running)$('runbtn').click()},
+    pergunta:function(){sfx.ui();ask(0)},
+    historico:function(){replayLog(true)}};
+  [1,2,3,4,5].forEach(function(k){ACT['pedido'+k]=function(){var li=$('asks').children[k-1];if(li&&li.getAttribute('aria-checked')!=='true')li.click()}});
+  function clock(){return audio&&hasAudio?audio.currentTime:(state==='paused'?pausedAt:(performance.now()-t0)/1000)}
+  function build(e){
+    words=e.words;cues=e.cues||[];fired=cues.map(function(){return false});sents=[];sentOf=[];var cur=[];
+    words.forEach(function(w,i){cur.push(i);sentOf[i]=sents.length;if(/[.!?]$/.test(w[0])||(cur.length>=9&&/[,:;]$/.test(w[0]))||cur.length>=16){sents.push(cur);cur=[]}});
+    if(cur.length)sents.push(cur);
+    words.forEach(function(w,i){if(sentOf[i]===undefined)sentOf[i]=sents.length-1});
+    shown=-1;
+  }
+  function render(si){
+    shown=si;txt.innerHTML=sents[si].map(function(i){return '<span data-i="'+i+'">'+words[i][0]+'</span>'}).join(' ');
+  }
+  function loop(){
+    var t=clock(),wi=-1;
+    for(var i=0;i<words.length;i++){if(words[i][1]<=t)wi=i;else break}
+    var si=wi<0?0:sentOf[wi];if(si!==shown)render(si);
+    [].forEach.call(txt.children,function(sp){var k=+sp.dataset.i;sp.classList.toggle('said',k<wi||(k===wi&&t>words[k][2]+.1));sp.classList.toggle('now',k===wi&&t<=words[k][2]+.1)});
+    cues.forEach(function(c,k){if(!fired[k]&&t>=c[1]){fired[k]=true;if(ACT[c[0]])ACT[c[0]]()}});
+    if(audio)audio.muted=sfx.muted();
+    if(!hasAudio&&state==='play'&&words.length&&t>words[words.length-1][2]+.5){done();return}
+    raf=requestAnimationFrame(loop);
+  }
+  function done(){state='done';cancelAnimationFrame(raf);cap.classList.remove('speaking','paused');cap.classList.add('done');
+    if(sents.length){render(sents.length-1);[].forEach.call(txt.children,function(sp){sp.classList.add('said');sp.classList.remove('now')})}}
+  function stop(){clearTimeout(timer);cancelAnimationFrame(raf);if(audio){audio.pause();audio.onended=null}audio=null;state='idle';cap.classList.remove('speaking','paused','done')}
+  function play(n){
+    stop();var e=DATA[n];if(!e){cap.hidden=true;return}
+    build(e);cap.hidden=false;state='play';cap.classList.add('speaking');stateEl.textContent=e.audio?'narração':'legendas';
+    hasAudio=false;t0=performance.now();
+    if(e.audio){audio=new Audio(e.audio);audio.muted=sfx.muted();audio.onended=done;
+      var p=audio.play();hasAudio=true;if(p&&p.catch)p.catch(function(){hasAudio=false;audio=null;t0=performance.now()})}
+    render(0);raf=requestAnimationFrame(loop);
+  }
+  function setOn(v){on=v;btn.setAttribute('aria-pressed',on);document.body.classList.toggle('narrating',on)}
+  cap.addEventListener('click',function(){
+    if(state==='play'){state='paused';pausedAt=clock();if(audio)audio.pause();cap.classList.add('paused');cap.classList.remove('speaking');cancelAnimationFrame(raf)}
+    else if(state==='paused'){state='play';if(audio&&hasAudio)audio.play();else t0=performance.now()-pausedAt*1000;cap.classList.remove('paused');cap.classList.add('speaking');raf=requestAnimationFrame(loop)}
+    else if(state==='done')go(cur+1);
+  });
+  btn.addEventListener('click',function(){api.toggle()});
+  var api={
+    on:function(){return on},
+    arm:function(){setOn(true)},
+    enter:function(n){if(!on||introOn)return;stop();cap.hidden=true;clearTimeout(timer);timer=setTimeout(function(){play(n)},1300)},
+    toggle:function(){sfx.ui();setOn(!on);if(on){stop();play(cur+1)}else{stop();cap.hidden=true}},
+    stop:stop};
+  return api;
+})();
+$('introgonarr').addEventListener('click',function(){sfx.init();narr.arm();$('introgo').click()});
 /* mute buttons */
 each('.mutebtn',function(b){b.setAttribute('aria-pressed',sfx.muted());b.querySelector('.lbl').textContent=sfx.muted()?'Som desligado':'Som';
   b.addEventListener('click',function(){sfx.init();sfx.toggle()})});
