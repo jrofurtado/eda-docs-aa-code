@@ -407,6 +407,24 @@ body.narrating .bar.bottom .nav .lbl{display:none}
 @media (max-width:1100px){.caption{left:var(--gutter);right:var(--gutter);bottom:calc(var(--bottom) + 70px)}body.narrating .slide{padding-bottom:calc(var(--bottom) + 190px)}}
 @media (max-width:560px){.caption .side .state{display:none}}
 
+/* slide 9: questions */
+.q-title{font-size:clamp(2.6rem,6vw,5.2rem);line-height:1;letter-spacing:-.045em;white-space:nowrap}
+.q-title .qm{color:var(--acc)}
+:root[data-theme="light"] .q-title .qm{-webkit-text-stroke:2px #1d1d1b}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .q-title .qm{-webkit-text-stroke:2px #1d1d1b}}
+.recap{margin-top:1.2rem;padding:1rem 1.2rem;border:1px solid var(--line);border-left:4px solid var(--acc);background:var(--glass);border-radius:3px;max-width:34rem;backdrop-filter:blur(6px)}
+.recap h3{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.6rem}
+.recap ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem;font-size:.95rem;font-weight:500}
+.recap li::marker{color:var(--acc-text);font-weight:800}
+.faq{margin-top:1.1rem;max-width:40rem}
+.faq-lbl{font:700 .66rem/1 var(--font);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.75}
+.faq-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
+.faq-chip{appearance:none;cursor:pointer;font:600 .8rem/1.2 var(--font);color:var(--muted);background:transparent;border:1px dashed var(--line);border-radius:14px;padding:.45rem .75rem;transition:color .2s,border-color .2s,background .2s}
+.faq-chip:hover,.faq-chip.sel{color:var(--text);border-style:solid;border-color:var(--acc);background:var(--glass)}
+.faq-chip:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.faq-ans{margin-top:.7rem;padding:.85rem 1rem;background:var(--glass-2);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:3px;font-size:.95rem;line-height:1.5;animation:logIn .35s ease both}
+.faq-ans b{display:block;font-weight:800;margin-bottom:.3rem}
+
 /* slide 8: making-of */
 .mk-list{list-style:none;margin:0;padding:1rem 1.2rem 1.1rem;display:grid;gap:0;max-height:min(62vh,560px);overflow:auto}
 .mk-item{display:grid;grid-template-columns:14px minmax(0,1fr);gap:.15rem .9rem;position:relative;padding-bottom:.85rem;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
@@ -483,7 +501,7 @@ body.narrating .bar.bottom .nav .lbl{display:none}
 
 <header class="bar top">
   <div class="brand"><b class="mark">EDA</b><b>SICOM</b><span>· Documentação como código</span></div>
-  <div class="count" id="count"><b>01</b> / 08</div>
+  <div class="count" id="count"><b>01</b> / 09</div>
 </header>
 
 <main class="deck" id="deck">
@@ -708,7 +726,7 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
       <div><span class="ico">IA</span><b>Feita com Claude Code, a partir de pedidos em português</b><span>Sem ferramentas de design nem de edição de vídeo. O pedido entra, a IA escreve o código, uma pessoa revê.</span></div>
       <div><span class="ico">&lt;/&gt;</span><b>3D, animação e som gerados por código</b><span>Nenhum ficheiro de imagem, vídeo ou áudio. O som é sintetizado no browser, em tempo real.</span></div>
     </div>
-    <div class="mk-stats"><div><b>7</b>pedidos</div><div><b>8</b>commits</div><div><b>1</b>revertido</div><div><b>0</b>ficheiros de media</div></div>
+    <div class="mk-stats"><div><b>13</b>pedidos</div><div><b>14</b>commits</div><div><b>1</b>revertido</div><div><b>0</b>ficheiros de media</div></div>
     <div class="row"><button class="act" id="replaybtn"><span class="play"></span>Reproduzir o histórico</button></div>
   </div>
   <div class="repo codebox" style="border-color:rgba(255,210,0,.35)">
@@ -721,10 +739,38 @@ Ver <span class="k">[ordens de transporte](./ots.md)</span></pre>
       <li class="mk-item"><span class="mk-q">Seria possível uma pequena intro tipo countdown, com animação?</span><span class="mk-c"><b>900edb1</b><span>Intro animada de abertura</span></span></li>
       <li class="mk-item rev"><span class="mk-q">Dar relevância aos agentes de IA e contrastar o antes e o depois.</span><span class="mk-c"><b>c8d42c5</b><span>Intro com quatro agentes</span><span class="mk-tag">revertido</span></span></li>
       <li class="mk-item"><span class="mk-q">Simplificar: uma IA cria o Markdown, outra IA lê-o, uma pessoa lê o PDF. E acrescentar som.</span><span class="mk-c"><b>d548799</b><span>Reverter a versão anterior</span></span></li>
-      <li class="mk-item now"><span class="mk-q">(a versão que está a ver)</span><span class="mk-c"><b>HEAD</b><span>Intro em 5 atos, som sintetizado, este slide</span></span></li>
+      <li class="mk-item"><span class="mk-q">Transições cinematográficas e narração com o ElevenLabs, a parar no fim de cada slide.</span><span class="mk-c"><b>1739b1b</b><span>Voo de câmara, modo narrado, áudio gerado</span></span></li>
+      <li class="mk-item now"><span class="mk-q">Faz sentido um slide final para perguntas?</span><span class="mk-c"><b>HEAD</b><span>Slide de perguntas com respostas preparadas</span></span></li>
     </ol>
   </div></div></div>
   <aside class="notes"><p>Slide de bastidores e tech demo. A apresentação segue a própria proposta: vive em Git, cada iteração é um commit e o guião está em Markdown.</p><p>Os pedidos à esquerda de cada commit são os pedidos reais feitos ao Claude Code, em português. Uma das versões foi revertida: é o controlo de versões a funcionar.</p><p>Clicar em "Reproduzir o histórico" para ver a evolução passo a passo.</p></aside>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Perguntas" aria-label="Perguntas">
+  <div class="wrap"><div class="split"><div class="stagger">
+    <p class="eyebrow">Obrigado</p>
+    <h2 class="q-title">Perguntas<span class="qm">?</span></h2>
+    <div class="recap"><h3>O que pedimos</h3><ol>
+      <li>Aprovação da prova de conceito · oito semanas</li>
+      <li>Acessos de leitura aos sistemas</li>
+      <li>Ferramentas de IA em regime empresarial</li>
+      <li>Tempo dos key users</li>
+      <li>Parecer de segurança e RGPD</li>
+    </ol></div>
+    <div class="faq"><span class="faq-lbl">Respostas preparadas</span>
+      <div class="faq-chips" id="faqchips">
+        <button class="faq-chip" data-f="0">E se a IA inventar?</button>
+        <button class="faq-chip" data-f="1">Os nossos dados saem da EDA?</button>
+        <button class="faq-chip" data-f="2">Quanto custa?</button>
+        <button class="faq-chip" data-f="3">Porquê GitLab e não SharePoint?</button>
+        <button class="faq-chip" data-f="4">Codex ou Claude Code?</button>
+        <button class="faq-chip" data-f="5">E depois da prova de conceito?</button>
+      </div>
+      <div class="faq-ans" id="faqans" hidden aria-live="polite"></div>
+    </div>
+  </div><div></div></div></div>
+  <aside class="notes"><p>Momento de perguntas. O resumo dos cinco pedidos fica visível durante a conversa.</p><p>Os tópicos em "Respostas preparadas" abrem respostas curtas para as perguntas mais prováveis. Só os abra se a pergunta surgir.</p><p>O custo das licenças fica por confirmar com os fornecedores.</p></aside>
 </section>
 
 </main>
@@ -1232,11 +1278,18 @@ function initGL(){
           T[i*3]=bx0+(bx1-bx0)*uu;T[i*3+1]=gy+Math.sin(uu*Math.PI)*2.6;T[i*3+2]=0;setc(i,COL.grey,.3);
         }}
       break;
+    case 8: // questions: the consolidated sphere, turning slowly
+      ox=wide?halfW*.5:0;var R9=wide?Math.min(halfH*.58,halfW*.34):halfH*.45;
+      for(i=0;i<N;i++){var y9=1-2*(i+.5)/N,r9=Math.sqrt(1-y9*y9),th9=i*2.39996+t*.07;
+        T[i*3]=ox+Math.cos(th9)*r9*R9;T[i*3+1]=y9*R9+Math.sin(t*.5)*.5;T[i*3+2]=Math.sin(th9)*r9*R9;
+        var m9=(y9+1)/2;for(var q9=0;q9<3;q9++)tc[q9]=COL.acc[q9]*m9+COL.amber[q9]*(1-m9);
+        setc(i,tc,.8+.25*Math.sin(t*1.1+i*.013));}
+      break;
     }
   }
   /* pointer: repel on the cloud and the sphere, click bursts the cloud */
   function interact(){
-    if(!(active===0||active===6)||!hover)return;
+    if(!(active===0||active===6||active===8)||!hover)return;
     var wx=mx*halfW,wy=-my*halfH,R=7,R2=R*R;
     for(var i=0;i<N;i++){var dx=T[i*3]-wx,dy=T[i*3+1]-wy,d2=dx*dx+dy*dy;
       if(d2<R2&&d2>.0001){var d=Math.sqrt(d2),f=(R-d)/R*4.5;T[i*3]+=dx/d*f;T[i*3+1]+=dy/d*f;T[i*3+2]+=f*.6}}
@@ -1294,7 +1347,7 @@ function initGL(){
   var blocked='button,a,pre,.doc,.flip,.panel,.src,.qbtn,.asks,.repo,.detail,.notes-panel,.bar';
   document.addEventListener('pointerdown',function(e){
     if(introOn||e.pointerType!=='mouse'||e.button!==0||e.target.closest(blocked))return;
-    if(!(active===0||active===1||active===6))return;
+    if(!(active===0||active===1||active===6||active===8))return;
     e.preventDefault();try{var sel=window.getSelection();if(sel)sel.removeAllRanges()}catch(x){}
     dragging=true;lastX=e.clientX;document.body.classList.add('dragging');
     if(active===0&&!reduce)st.burst=Math.max(st.burst,.6);
@@ -1848,6 +1901,21 @@ var narr=(function(){
   return api;
 })();
 $('introgonarr').addEventListener('click',function(){sfx.init();narr.arm();$('introgo').click()});
+/* ---------- slide 9: prepared answers ---------- */
+var FAQ=[
+ ['E se a IA inventar?','Nada é publicado sem revisão humana: tudo entra por merge request e é validado por quem conhece o processo. Cada secção indica a fonte de onde veio, por isso qualquer afirmação pode ser verificada.'],
+ ['Os nossos dados saem da EDA?','Usamos ferramentas de IA em regime empresarial, sem treino com os nossos dados. Os tickets com dados de clientes são anonimizados antes da extração, e a prova de conceito só arranca depois do parecer de segurança e RGPD.'],
+ ['Quanto custa?','Licenças de IA em regime empresarial para duas a três pessoas durante oito semanas, e cerca de duas horas por semana de dois a três key users nas duas últimas semanas. O valor das licenças fica a confirmar com os fornecedores.'],
+ ['Porquê GitLab e não SharePoint?','O SharePoint guarda ficheiros; o GitLab guarda versões. Cada alteração tem autor, data e revisor, a documentação fica junto do código e o Markdown é legível por pessoas e por IA. O SharePoint pode continuar a receber os PDF gerados.'],
+ ['Codex ou Claude Code?','A prova de conceito compara as duas no mesmo material e com os mesmos critérios: exatidão avaliada pelos key users, cobertura dos objetos e esforço de revisão. A escolha é feita com dados.'],
+ ['E depois da prova de conceito?','Se as metas forem atingidas, o mesmo modelo aplica-se a outros processos do SAP for Utilities e às restantes aplicações. A documentação passa a ser regenerada a cada ordem de transporte importada em produção.']];
+var faqSel=-1;
+each('#faqchips .faq-chip',function(b){b.addEventListener('click',function(){
+  var i=+b.dataset.f,box=$('faqans');faqSel=faqSel===i?-1:i;sfx.ui();
+  each('#faqchips .faq-chip',function(x,k){x.classList.toggle('sel',k===faqSel)});
+  if(faqSel<0){box.hidden=true;return}
+  box.hidden=false;box.innerHTML='<b>'+FAQ[i][0]+'</b>'+FAQ[i][1];box.style.animation='none';void box.offsetWidth;box.style.animation='';
+})});
 /* mute buttons */
 each('.mutebtn',function(b){b.setAttribute('aria-pressed',sfx.muted());b.querySelector('.lbl').textContent=sfx.muted()?'Som desligado':'Som';
   b.addEventListener('click',function(){sfx.init();sfx.toggle()})});

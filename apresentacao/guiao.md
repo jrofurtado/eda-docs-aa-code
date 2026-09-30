@@ -115,3 +115,18 @@ Se resultar no IS-U, o mesmo modelo aplica-se às restantes aplicações da EDA.
 - 3D, animação e som gerados por código: nenhum ficheiro de imagem, vídeo ou áudio.
 
 O painel mostra o `git log` real, com o pedido que originou cada commit. Uma das versões (a intro com quatro agentes) foi revertida, o que mostra o controlo de versões a funcionar. O botão "Reproduzir o histórico" percorre a evolução passo a passo.
+
+## 9. Perguntas
+
+**Perguntas?** O resumo dos cinco pedidos fica visível durante a conversa, e a esfera de partículas consolidada roda devagar em fundo.
+
+"Respostas preparadas": tópicos discretos que só o orador abre, se a pergunta surgir.
+
+- **E se a IA inventar?** Nada é publicado sem revisão humana por merge request, e cada secção indica a fonte.
+- **Os nossos dados saem da EDA?** Ferramentas em regime empresarial, sem treino com os nossos dados; tickets anonimizados; parecer de segurança e RGPD antes de arrancar.
+- **Quanto custa?** Licenças para duas a três pessoas durante oito semanas e tempo dos key users. O valor das licenças fica a confirmar com os fornecedores.
+- **Porquê GitLab e não SharePoint?** O GitLab guarda versões, com autor, data e revisor; o SharePoint pode continuar a receber os PDF gerados.
+- **Codex ou Claude Code?** A prova de conceito compara as duas com os mesmos critérios.
+- **E depois da prova de conceito?** Alargar a outros processos e aplicações, com regeneração a cada ordem de transporte em produção.
+
+Narração: "Obrigado pela vossa atenção. Ficamos disponíveis para as vossas perguntas."

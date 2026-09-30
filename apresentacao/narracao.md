@@ -35,3 +35,7 @@ Para arrancar, precisamos de cinco coisas. [[pedido1]] A aprovação da prova de
 ## 8 · Bastidores
 
 Uma última nota. Esta apresentação é, ela própria, documentação como código. É um ficheiro num repositório Git, com o guião em Markdown. Foi feita com o Claude Code, a partir de pedidos em português, e o 3D, a animação, o som e esta narração foram gerados por código e por inteligência artificial. [[historico]] Cada versão ficou registada. Até a que foi revertida.
+
+## 9 · Perguntas
+
+Obrigado pela vossa atenção. Ficamos disponíveis para as vossas perguntas.

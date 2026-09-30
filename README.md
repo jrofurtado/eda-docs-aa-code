@@ -7,7 +7,7 @@ Iniciativa para consolidar o conhecimento sobre as aplicações da EDA num repos
 | Caminho | O que é |
 | --- | --- |
 | `apresentacao/index.html` | Apresentação interativa para a direção (7 slides, cena 3D com Three.js). Abrir num browser. |
-| `apresentacao/versao-eda.html` | A mesma apresentação com a identidade da EDA: Montserrat, amarelo #ffd200 e cinzentos #878787 e #ededed. Tem tema claro e escuro (tecla `T`), intro animada de 25 segundos em cinco atos (tecla `I` para rever), som sintetizado por código (tecla `M` para silenciar) e um slide 8 de bastidores sobre como a apresentação foi feita. |
+| `apresentacao/versao-eda.html` | A mesma apresentação com a identidade da EDA: Montserrat, amarelo #ffd200 e cinzentos #878787 e #ededed. Tem tema claro e escuro (tecla `T`), intro animada de 25 segundos em cinco atos (tecla `I` para rever), som sintetizado por código (tecla `M` para silenciar) um slide 8 de bastidores sobre como a apresentação foi feita e um slide 9 de perguntas com respostas preparadas. |
 | `apresentacao/guiao.md` | Conteúdo e notas do orador de cada slide, em Markdown. |
 | `apresentacao/narracao.md` | Texto da narração, um bloco por slide. É a fonte do modo narrado. |
 | `apresentacao/narracao.js` | Gerado a partir de `narracao.md`: texto, tempos de cada palavra e ações. Não editar à mão. |
@@ -44,7 +44,7 @@ Para gerar o áudio (Node 18 ou mais recente):
 ELEVENLABS_API_KEY=... ELEVENLABS_VOICE_ID=... node apresentacao/ferramentas/gerar-narracao.mjs
 ```
 
-- Grava `apresentacao/audio/s1.mp3` a `s8.mp3` e atualiza `narracao.js` com os tempos reais de cada palavra.
+- Grava `apresentacao/audio/s1.mp3` a `s9.mp3` e atualiza `narracao.js` com os tempos reais de cada palavra.
 - Use uma voz em português europeu da Voice Library do ElevenLabs.
 - Só volta a pedir áudio para os slides cujo texto mudou (`--forcar` gera tudo, `--slides 2,5` só alguns).
 - Sem chave, `--sem-audio` gera só as legendas com tempos estimados.
