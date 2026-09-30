@@ -112,7 +112,7 @@ body{
 .navbtn:hover{border-color:var(--acc)}
 .navbtn[disabled]{opacity:.35;cursor:default}
 .navbtn[aria-pressed="true"],.navbtn.primary{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
-.navbtn .sun{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+.navbtn .sun,.intro-skip .sun{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
 
 /* ---------- slides ---------- */
 .deck{position:fixed;inset:0;z-index:3}
@@ -367,6 +367,8 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
 .intro-ctl{position:absolute;z-index:2;right:var(--gutter);top:calc(var(--top) + 22px);display:flex;gap:.5rem}
 .intro-skip{appearance:none;cursor:pointer;background:var(--glass);border:1px solid var(--line);color:var(--muted);
   border-radius:16px;padding:.5rem .9rem;font:700 .7rem/1 var(--font);letter-spacing:.12em;text-transform:uppercase}
+.intro-ctl .intro-skip{display:inline-flex;align-items:center;gap:.45rem}
+.intro-skip .sun{flex:none}
 .intro-skip:hover,.intro-skip:focus-visible{color:var(--text);border-color:var(--acc);outline:none}
 .intro-wipe{position:fixed;inset:0;z-index:30;pointer-events:none;display:none;align-items:center;justify-content:center;background:#ffd200;overflow:hidden}
 .intro-wipe span{font:800 clamp(5rem,24vw,22rem)/1 var(--font);color:#1d1d1b;letter-spacing:-.05em}
@@ -471,11 +473,11 @@ body.narrating .bar.bottom .nav .lbl{display:none}
     <h1 class="intro-title">Documentação<br>como <em>código</em></h1>
     <p class="intro-sub">Proposta de iniciativa · prova de conceito no SAP IS-U</p>
     <div class="row" style="margin-top:1.2rem"><button class="act intro-go" id="introgo" style="margin-top:0"><span class="play"></span>Iniciar apresentação</button><button class="act ghost" id="introgonarr"><span class="play"></span>Iniciar com narração</button></div>
-    <p class="intro-keys"><kbd>Enter</kbd> iniciar <span>·</span> <kbd>→</kbd> ato seguinte <span>·</span> <kbd>Esc</kbd> saltar <span>·</span> <kbd>M</kbd> som <span>·</span> <kbd>I</kbd> rever</p>
+    <p class="intro-keys"><kbd>Enter</kbd> iniciar <span>·</span> <kbd>→</kbd> ato seguinte <span>·</span> <kbd>Esc</kbd> saltar <span>·</span> <kbd>M</kbd> som <span>·</span> <kbd>T</kbd> tema <span>·</span> <kbd>I</kbd> rever</p>
   </div>
   <div class="intro-state" id="introstate" hidden aria-live="polite"></div>
   <div class="intro-hud" id="introhud" hidden><span id="introlbl" class="steps"><i>Hoje</i><i>Recolha</i><i>Markdown</i><i>Leitura</i><i>Proposta</i></span><span class="intro-track"><i id="introbar"></i></span><b id="intronum">01</b></div>
-  <div class="intro-ctl"><button class="intro-skip mutebtn" id="intromute" aria-pressed="false" title="Som (M)"><span class="spk"></span> <span class="lbl">Som</span></button><button class="intro-skip" id="introskip" hidden>Saltar ›</button></div>
+  <div class="intro-ctl"><button class="intro-skip" id="introtheme" title="Tema claro ou escuro (T)" aria-label="Alternar tema claro ou escuro"><span class="sun"></span> <span class="lbl">Tema</span></button><button class="intro-skip mutebtn" id="intromute" aria-pressed="false" title="Som (M)"><span class="spk"></span> <span class="lbl">Som</span></button><button class="intro-skip" id="introskip" hidden>Saltar ›</button></div>
 </div>
 <div class="intro-wipe" id="introwipe" aria-hidden="true"><span>EDA</span></div>
 
@@ -1022,7 +1024,8 @@ function isLight(){var t=root.getAttribute('data-theme');if(t)return t==='light'
 function toggleTheme(){sfx.ui();var next=isLight()?'dark':'light';root.setAttribute('data-theme',next);try{localStorage.setItem('eda-theme',next)}catch(e){}}
 try{var saved=localStorage.getItem('eda-theme');if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved)}catch(e){}
 $('themebtn').addEventListener('click',toggleTheme);
-function themeChanged(){if(gl)gl.theme(isLight())}
+$('introtheme').addEventListener('click',toggleTheme);
+function themeChanged(){if(gl)gl.theme(isLight());introTheme()}
 if(window.MutationObserver)new MutationObserver(themeChanged).observe(root,{attributes:true,attributeFilter:['data-theme']});
 if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',themeChanged)}
 
@@ -1368,7 +1371,7 @@ document.addEventListener('pointerdown',function(){sfx.init()},{capture:true});
 document.addEventListener('keydown',function(){sfx.init()},{capture:true});
 
 /* ---------- intro: one AI writes the Markdown, another AI and a person read it ---------- */
-var introOn=false,introKey=function(){},showIntro=function(){};
+var introOn=false,introKey=function(){},showIntro=function(){},introTheme=function(){};
 (function(){
   var el=$('intro'),wipe=$('introwipe');
   if(!el)return;
@@ -1748,6 +1751,7 @@ var introOn=false,introKey=function(){},showIntro=function(){};
   introKey=function(e){
     var k=e.key;
     if(k==='m'||k==='M'){sfx.toggle();return}
+    if(k==='t'||k==='T'){toggleTheme();return}
     if(phase==='idle'){
       if(k==='Enter'||k===' '){e.preventDefault();run()}
       else if(k==='Escape'){e.preventDefault();readCols();finish(true)}
@@ -1763,6 +1767,7 @@ var introOn=false,introKey=function(){},showIntro=function(){};
     el.style.display='';readCols();size();mkFrags();idle0=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);
     $('introgo').focus({preventScroll:true});
   };
+  introTheme=function(){if(phase==='idle'||phase==='run')readCols()};
   $('introgo').addEventListener('click',run);
   skip.addEventListener('click',function(){finish(true)});
   window.addEventListener('resize',function(){if(phase==='idle'){size();mkFrags()}});
