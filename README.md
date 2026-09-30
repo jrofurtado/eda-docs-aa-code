@@ -48,6 +48,7 @@ ELEVENLABS_API_KEY=... ELEVENLABS_VOICE_ID=... node apresentacao/ferramentas/ger
 - Use uma voz em português europeu da Voice Library do ElevenLabs.
 - Só volta a pedir áudio para os slides cujo texto mudou (`--forcar` gera tudo, `--slides 2,5` só alguns).
 - Sem chave, `--sem-audio` gera só as legendas com tempos estimados.
-- Em ambientes que injetam a chave no cabeçalho `xi-api-key` (credencial para `api.elevenlabs.io`), use `--chave-no-proxy --voz <voice_id>` em vez de `ELEVENLABS_API_KEY`.
+- Em ambientes que injetam a chave no cabeçalho `xi-api-key` (credencial para `api.elevenlabs.io`), use `NODE_USE_ENV_PROXY=1 node apresentacao/ferramentas/gerar-narracao.mjs --chave-no-proxy --voz <voice_id>`.
+- Áudio atual: voz `WgE8iWzGVoJYLb5V7l2d`, modelo `eleven_v4` (o modelo por omissão do script).
 
 O áudio é gerado uma vez e fica no repositório. A apresentação não chama o ElevenLabs e funciona sem internet nem conta, desde que a pasta `audio/` acompanhe o HTML.

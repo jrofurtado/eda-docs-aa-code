@@ -12,6 +12,7 @@
 //   ELEVENLABS_API_KEY=... ELEVENLABS_VOICE_ID=... node apresentacao/ferramentas/gerar-narracao.mjs
 //   node apresentacao/ferramentas/gerar-narracao.mjs --chave-no-proxy --voz <voice_id>
 //     (em ambientes que injetam o cabeçalho xi-api-key nos pedidos a api.elevenlabs.io)
+//     O fetch do Node só usa o proxy do ambiente com NODE_USE_ENV_PROXY=1 (Node >= 22.21).
 //   node apresentacao/ferramentas/gerar-narracao.mjs --sem-audio
 // Opções: --voz <voice_id>  --modelo <model_id>  --slides 2,5  --forcar
 // Só volta a pedir áudio para os slides cujo texto, voz ou modelo mudaram.
@@ -28,7 +29,7 @@ const has = (name) => args.includes(name);
 
 const KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE = opt('--voz', process.env.ELEVENLABS_VOICE_ID || '');
-const MODEL = opt('--modelo', process.env.ELEVENLABS_MODEL_ID || 'eleven_multilingual_v2');
+const MODEL = opt('--modelo', process.env.ELEVENLABS_MODEL_ID || 'eleven_v4');
 const ONLY = opt('--slides', '') ? opt('--slides', '').split(',').map(Number) : null;
 const PROXY_KEY = has('--chave-no-proxy') || process.env.ELEVENLABS_KEY_VIA_PROXY === '1';
 const WITH_AUDIO = (Boolean(KEY) || PROXY_KEY) && !has('--sem-audio');
@@ -102,7 +103,11 @@ async function tts(text) {
     headers: { ...(KEY ? { 'xi-api-key': KEY } : {}), 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({ text, model_id: MODEL, voice_settings: { stability: .5, similarity_boost: .8, style: .15, use_speaker_boost: true } }),
   });
-  if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  if (!res.ok) {
+    const body = (await res.text()).slice(0, 300);
+    const hint = res.status === 401 && PROXY_KEY && process.env.NODE_USE_ENV_PROXY !== '1' ? '\nCom --chave-no-proxy, corra com NODE_USE_ENV_PROXY=1 para o pedido passar pelo proxy que injeta a chave.' : '';
+    throw new Error(`ElevenLabs ${res.status}: ${body}${hint}`);
+  }
   const j = await res.json();
   return { audio: Buffer.from(j.audio_base64, 'base64'), alignment: j.alignment || j.normalized_alignment };
 }
